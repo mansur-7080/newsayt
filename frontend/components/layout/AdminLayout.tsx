@@ -2,7 +2,6 @@
 
 import React, { ReactNode } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { 
   BarChart3, 
   Users, 
@@ -13,8 +12,6 @@ import {
   Bell, 
   Search
 } from 'lucide-react'
-import Header from './Header'
-import Footer from './Footer'
 
 interface AdminLayoutProps {
   children: ReactNode
@@ -27,8 +24,6 @@ export default function AdminLayout({
 }: AdminLayoutProps) {
   return (
     <div className="min-h-screen bg-gray-100">
-      <Header />
-      
       <div className="bg-blue-600 text-white py-6">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -165,8 +160,6 @@ export default function AdminLayout({
           </div>
         </div>
       </main>
-      
-      <Footer />
     </div>
   )
 }
