@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Search, ShoppingCart, Menu, Heart, User, Globe, MapPin, Bell, Sparkles } from 'lucide-react'
+import { NavigationBar } from '../ui/NavigationBar'
 
 export default function Header() {
   return (
@@ -57,7 +58,7 @@ export default function Header() {
                   <option>All Categories</option>
                   <option>Electronics</option>
                   <option>Fashion</option>
-                  <option>Home & Garden</option>
+                  <option>Home &amp; Garden</option>
                   <option>Sports</option>
                 </select>
                 <input
@@ -124,7 +125,10 @@ export default function Header() {
             </div>
           </form>
         </div>
+        
+        {/* Navigation Bar */}
+        <NavigationBar />
       </header>
     </>
   )
-}  
+}     
