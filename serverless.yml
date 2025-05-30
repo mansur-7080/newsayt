@@ -1,0 +1,300 @@
+service: alibaba-mega-platform
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  environment:
+    STAGE: ${self:provider.stage}
+    SERVICE_NAME: ${self:service}
+    EVENT_STORE_TABLE: ${self:service}-${self:provider.stage}-events
+    USER_TABLE: ${self:service}-${self:provider.stage}-users
+    MESSAGE_QUEUE_URL: !Ref MessageQueue
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:*
+            - s3:*
+            - sqs:*
+            - sns:*
+            - lambda:InvokeFunction
+          Resource: "*"
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-domain-manager
+  - serverless-plugin-warmup
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  warmup:
+    default:
+      enabled: true
+      folderName: '_warmup'
+      cleanFolder: false
+      memorySize: 128
+      events:
+        - schedule: 'rate(5 minutes)'
+  customDomain:
+    domainName: api.${self:provider.stage}.alibaba-mega.com
+    basePath: ''
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+
+functions:
+  # API Gateway
+  apiGateway:
+    handler: mikrokernel-yadro/api-gateway.handler
+    events:
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true
+    environment:
+      SERVICE_REGISTRY_URL: ${self:custom.serviceRegistryUrl}
+
+  # User Service Functions
+  createUser:
+    handler: mikroservislar/foydalanuvchi-servisi/serverless-bulut/createUser.handler
+    events:
+      - http:
+          path: users
+          method: post
+          cors: true
+      - sqs:
+          arn: !GetAtt UserQueue.Arn
+    reservedConcurrency: 10
+
+  getUser:
+    handler: mikroservislar/foydalanuvchi-servisi/serverless-bulut/getUser.handler
+    events:
+      - http:
+          path: users/{id}
+          method: get
+          cors: true
+    warmup:
+      default:
+        enabled: true
+
+  # Image Processing
+  processImage:
+    handler: bulut-funksiyalar/rasm-qayta-ishlash/index.handler
+    timeout: 60
+    memorySize: 1024
+    layers:
+      - arn:aws:lambda:${aws:region}:${aws:accountId}:layer:sharp:1
+    events:
+      - s3:
+          bucket: ${self:service}-uploads-${self:provider.stage}
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: uploads/
+            - suffix: .jpg
+      - s3:
+          bucket: ${self:service}-uploads-${self:provider.stage}
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: uploads/
+            - suffix: .png
+
+  # Report Generation
+  generateReport:
+    handler: bulut-funksiyalar/hisobot-yaratish/index.handler
+    timeout: 300
+    memorySize: 2048
+    events:
+      - schedule:
+          rate: cron(0 2 * * ? *)
+          enabled: true
+          input:
+            reportType: daily
+      - sns:
+          arn: !Ref ReportTopic
+          topicName: report-requests
+
+  # Notification Service
+  sendNotification:
+    handler: bulut-funksiyalar/xabarnoma-yuborish/index.handler
+    events:
+      - sqs:
+          arn: !GetAtt NotificationQueue.Arn
+          batchSize: 10
+
+  # Event Handlers
+  userEventHandler:
+    handler: asinxron-xabarlar/handlers/userEventHandler.handler
+    events:
+      - stream:
+          type: dynamodb
+          arn: !GetAtt EventStoreTable.StreamArn
+          startingPosition: TRIM_HORIZON
+          filterPatterns:
+            - eventName: [INSERT]
+
+  # Projection Rebuilder
+  rebuildProjections:
+    handler: voqealar-ombori/projections/rebuild.handler
+    timeout: 900
+    memorySize: 3008
+    events:
+      - http:
+          path: admin/projections/rebuild
+          method: post
+          authorizer: aws_iam
+
+resources:
+  Resources:
+    # DynamoDB Tables
+    EventStoreTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.EVENT_STORE_TABLE}
+        AttributeDefinitions:
+          - AttributeName: aggregateId
+            AttributeType: S
+          - AttributeName: version
+            AttributeType: N
+          - AttributeName: eventName
+            AttributeType: S
+          - AttributeName: occurredAt
+            AttributeType: S
+        KeySchema:
+          - AttributeName: aggregateId
+            KeyType: HASH
+          - AttributeName: version
+            KeyType: RANGE
+        GlobalSecondaryIndexes:
+          - IndexName: eventName-occurredAt-index
+            KeySchema:
+              - AttributeName: eventName
+                KeyType: HASH
+              - AttributeName: occurredAt
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+        BillingMode: PAY_PER_REQUEST
+        StreamSpecification:
+          StreamViewType: NEW_AND_OLD_IMAGES
+
+    UserTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.USER_TABLE}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: email
+            AttributeType: S
+          - AttributeName: username
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: email-index
+            KeySchema:
+              - AttributeName: email
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+          - IndexName: username-index
+            KeySchema:
+              - AttributeName: username
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+        BillingMode: PAY_PER_REQUEST
+
+    # S3 Buckets
+    UploadsBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:service}-uploads-${self:provider.stage}
+        CorsConfiguration:
+          CorsRules:
+            - AllowedHeaders: ['*']
+              AllowedMethods: [GET, PUT, POST, DELETE]
+              AllowedOrigins: ['*']
+              MaxAge: 3000
+
+    ProcessedImagesBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:service}-processed-${self:provider.stage}
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
+          BlockPublicPolicy: false
+
+    # SQS Queues
+    MessageQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ${self:service}-messages-${self:provider.stage}
+        VisibilityTimeout: 300
+        MessageRetentionPeriod: 1209600
+        RedrivePolicy:
+          deadLetterTargetArn: !GetAtt DeadLetterQueue.Arn
+          maxReceiveCount: 3
+
+    UserQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ${self:service}-users-${self:provider.stage}
+
+    NotificationQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ${self:service}-notifications-${self:provider.stage}
+
+    DeadLetterQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ${self:service}-dlq-${self:provider.stage}
+
+    # SNS Topics
+    ReportTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: ${self:service}-reports-${self:provider.stage}
+
+    # CloudFront Distribution
+    CDN:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          Origins:
+            - DomainName: !GetAtt ProcessedImagesBucket.DomainName
+              Id: ProcessedImages
+              S3OriginConfig:
+                OriginAccessIdentity: ''
+          Enabled: true
+          DefaultCacheBehavior:
+            TargetOriginId: ProcessedImages
+            ViewerProtocolPolicy: redirect-to-https
+            CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          PriceClass: PriceClass_100
+
+  Outputs:
+    ApiGatewayUrl:
+      Description: API Gateway endpoint URL
+      Value: !Sub 'https://${ApiGatewayRestApi}.execute-api.${AWS::Region}.amazonaws.com/${self:provider.stage}'
+    
+    CloudFrontUrl:
+      Description: CloudFront distribution URL
+      Value: !GetAtt CDN.DomainName
+    
+    EventStoreTableName:
+      Description: Event Store DynamoDB table name
+      Value: !Ref EventStoreTable
+    
+    UserTableName:
+      Description: User DynamoDB table name
+      Value: !Ref UserTable 
