@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { Search, ShoppingCart, Menu, Heart, User, Globe, ChevronDown, Truck, MapPin, Bell, Sparkles } from 'lucide-react'
+import { Search, ShoppingCart, Menu, Heart, User, Globe, MapPin, Bell, Sparkles } from 'lucide-react'
 
 export default function Header() {
   return (
@@ -127,4 +127,4 @@ export default function Header() {
       </header>
     </>
   )
-} 
+}  

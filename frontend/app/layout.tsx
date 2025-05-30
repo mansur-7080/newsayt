@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'MegaMart - Global Marketplace',
-  description: 'Shop millions of products from trusted sellers worldwide',
+  description: 'Shop millions of products from trusted sellers worldwide. Best deals, fast shipping, secure payments.',
 }
 
 export default function RootLayout({
@@ -24,4 +24,4 @@ export default function RootLayout({
       </body>
     </html>
   )
-} 
+}  

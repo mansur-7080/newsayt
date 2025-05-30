@@ -1,47 +1,54 @@
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
+import HeroCarousel from '@/components/home/HeroCarousel'
+import CategoryGrid from '@/components/home/CategoryGrid'
+import TrendingProducts from '@/components/home/TrendingProducts'
+import FlashDeals from '@/components/home/FlashDeals'
+
 export default function HomePage() {
   return (
-    <div>
-      <h1 style={{fontSize: '48px', textAlign: 'center', marginTop: '50px', color: '#ff6a00'}}>
-        🎉 MEGAMART ISHLAYAPTI!
-      </h1>
-      <p style={{fontSize: '24px', textAlign: 'center', marginTop: '20px'}}>
-        Professional E-commerce Platform
-      </p>
-      <div style={{textAlign: 'center', marginTop: '40px'}}>
-        <a href="/test" style={{
-          display: 'inline-block',
-          padding: '15px 30px',
-          backgroundColor: '#ff6a00',
-          color: 'white',
-          textDecoration: 'none',
-          borderRadius: '8px',
-          fontSize: '18px',
-          marginRight: '10px'
-        }}>
-          Test Sahifa
-        </a>
-        <a href="/shop" style={{
-          display: 'inline-block',
-          padding: '15px 30px',
-          backgroundColor: '#0064ff',
-          color: 'white',
-          textDecoration: 'none',
-          borderRadius: '8px',
-          fontSize: '18px'
-        }}>
-          Dokonga Otish
-        </a>
-      </div>
-      <div style={{maxWidth: '800px', margin: '50px auto', padding: '20px'}}>
-        <h2 style={{fontSize: '32px', marginBottom: '20px'}}>Sayt Xususiyatlari:</h2>
-        <ul style={{fontSize: '18px', lineHeight: '1.8'}}>
-          <li>✅ Next.js 14 - Eng songgi texnologiya</li>
-          <li>✅ TypeScript - Type-safe kod</li>
-          <li>✅ Tailwind CSS - Zamonaviy dizayn</li>
-          <li>✅ Responsive - Barcha qurilmalarda ishlaydi</li>
-          <li>✅ Fast Loading - Tezkor yuklanish</li>
-        </ul>
-      </div>
+    <div className="min-h-screen bg-gray-50">
+      <Header />
+      
+      <main>
+        {/* Hero Section */}
+        <section className="relative">
+          <HeroCarousel />
+        </section>
+
+        {/* Categories Section */}
+        <section className="container mx-auto px-4 py-12">
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">Shop by Category</h2>
+            <p className="text-gray-600">Discover amazing products in every category</p>
+          </div>
+          <CategoryGrid />
+        </section>
+
+        {/* Flash Deals Section */}
+        <section className="bg-white py-12">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">⚡ Flash Deals</h2>
+                <p className="text-gray-600">Limited time offers - grab them before they're gone!</p>
+              </div>
+            </div>
+            <FlashDeals />
+          </div>
+        </section>
+
+        {/* Trending Products Section */}
+        <section className="container mx-auto px-4 py-12">
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">🔥 Trending Now</h2>
+            <p className="text-gray-600">Most popular products loved by our customers</p>
+          </div>
+          <TrendingProducts />
+        </section>
+      </main>
+
+      <Footer />
     </div>
   )
-} 
+}   

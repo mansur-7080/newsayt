@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useRef } from 'react'
-import Image from 'next/image'
 import { Timer, ShoppingCart, Heart, Star, Zap, ChevronLeft, ChevronRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 
@@ -228,4 +227,4 @@ export default function FlashDeals() {
       `}</style>
     </div>
   )
-} 
+}  

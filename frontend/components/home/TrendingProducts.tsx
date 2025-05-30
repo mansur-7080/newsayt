@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Star, TrendingUp, Eye, ShoppingCart, Heart } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -233,4 +232,4 @@ export default function TrendingProducts() {
       ))}
     </div>
   )
-} 
+}  
