@@ -8,13 +8,15 @@ interface FloatingParticlesProps {
   minSize?: number
   maxSize?: number
   className?: string
+  backgroundOnly?: boolean // New prop to control where effects appear
 }
 
 export default function FloatingParticles({
-  count = 8, // Reduced count for minimalist design
-  minSize = 2, // Smaller particles
-  maxSize = 6, // Smaller max size
-  className = ''
+  count = 3, // Further reduced count for minimalist design
+  minSize = 1, // Smaller particles
+  maxSize = 3, // Smaller max size
+  className = '',
+  backgroundOnly = true // Default to background-only effects
 }: FloatingParticlesProps) {
   const [particles, setParticles] = useState<Array<{
     id: number
@@ -38,24 +40,45 @@ export default function FloatingParticles({
     setParticles(newParticles)
   }, [count, minSize, maxSize])
 
+  const [isOverUIElement, setIsOverUIElement] = useState(false)
+  
+  useEffect(() => {
+    if (backgroundOnly) {
+      const handleMouseMove = (e: MouseEvent) => {
+        const elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY)
+        const isOverInteractive = elementUnderMouse?.closest('.interactive-element, a, button, input, select, textarea')
+        setIsOverUIElement(!!isOverInteractive)
+      }
+      
+      document.addEventListener('mousemove', handleMouseMove)
+      
+      return () => {
+        document.removeEventListener('mousemove', handleMouseMove)
+      }
+    }
+    
+    return () => {}; // Return empty cleanup function when backgroundOnly is false
+  }, [backgroundOnly])
+
   return (
     <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
-      {particles.map(particle => (
+      {(!backgroundOnly || !isOverUIElement) && particles.map(particle => (
         <motion.div
           key={particle.id}
-          className="absolute rounded-full bg-gradient-to-r from-[#4f8eff]/10 to-[#41f1b6]/5 gpu-accelerated"
+          className="absolute rounded-full bg-gradient-to-r from-[#4f8eff]/5 to-[#41f1b6]/3 gpu-accelerated"
           style={{
             left: particle.x,
             top: particle.y,
             width: particle.size,
             height: particle.size,
-            boxShadow: '0 0 4px rgba(79, 142, 255, 0.1)', // More subtle shadow
+            boxShadow: '0 0 2px rgba(79, 142, 255, 0.05)', // Even more subtle shadow
+            zIndex: 0, // Ensure it's behind content
           }}
           animate={{
-            y: ['0%', '-5%', '2%', '-2%', '0%'], // Reduced movement
-            x: ['0%', '2%', '-2%', '4%', '0%'], // Reduced movement
-            opacity: [0.1, 0.2, 0.15, 0.25, 0.1], // Lower opacity
-            scale: [1, 1.05, 0.98, 1.02, 1], // Reduced scale changes
+            y: ['0%', '-3%', '1%', '-1%', '0%'], // Further reduced movement
+            x: ['0%', '1%', '-1%', '2%', '0%'], // Further reduced movement
+            opacity: [0.05, 0.08, 0.06, 0.09, 0.05], // Even lower opacity
+            scale: [1, 1.02, 0.99, 1.01, 1], // Further reduced scale changes
           }}
           transition={{
             duration: particle.duration,
