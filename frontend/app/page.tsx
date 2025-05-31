@@ -11,7 +11,6 @@ import BrandShowcase from '@/components/home/BrandShowcase'
 import { FeaturedSellers } from '@/components/home/FeaturedSellers'
 import { FeaturedBrands } from '@/components/ui/FeaturedBrands'
 import { PromoCards } from '@/components/ui/PromoCards'
-import { NewsletterSignup } from '@/components/ui/NewsletterSignup'
 import { MobileAppBanner } from '@/components/ui/MobileAppBanner'
 import { RecentlyViewed } from '@/components/ui/RecentlyViewed'
 import { ArrowRight } from 'lucide-react'
@@ -42,10 +41,10 @@ export default function HomePage() {
   return (
     <InteractiveBackground 
       className="min-h-screen dark-gradient-bg"
-      particleCount={25}
-      particleOpacity={0.3}
-      particleSize={4}
-      gradientColors={['rgba(79, 142, 255, 0.08)', 'rgba(65, 241, 182, 0.05)']}
+      particleCount={10}
+      particleOpacity={0.15}
+      particleSize={2}
+      gradientColors={['rgba(79, 142, 255, 0.05)', 'rgba(65, 241, 182, 0.03)']}
     >
       <Header />
       
@@ -61,13 +60,13 @@ export default function HomePage() {
             <div className="container mx-auto px-4">
               <div className="max-w-3xl mx-auto">
                 <motion.div 
-                  className="glass-card p-3 rounded-xl shadow-lg border border-white/5 backdrop-blur-md"
+                  className="glass-card p-2 rounded-lg shadow-sm border border-black/5 backdrop-blur-md"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                   whileHover={{ 
-                    boxShadow: '0 0 20px rgba(79, 142, 255, 0.15), 0 0 5px rgba(65, 241, 182, 0.1)',
-                    borderColor: 'rgba(255, 255, 255, 0.1)'
+                    boxShadow: '0 0 10px rgba(79, 142, 255, 0.1), 0 0 3px rgba(65, 241, 182, 0.05)',
+                    borderColor: 'rgba(0, 0, 0, 0.1)'
                   }}
                 >
                   <div className="flex flex-col md:flex-row gap-2">
@@ -75,14 +74,14 @@ export default function HomePage() {
                       <input 
                         type="text" 
                         placeholder="Search for products, brands, or categories..." 
-                        className="w-full px-4 py-2.5 rounded-lg bg-white/5 border border-white/5 text-white placeholder-white/40 focus:outline-none focus:ring-1 focus:ring-[#4f8eff]/50 focus:border-transparent backdrop-blur-sm"
+                        className="w-full px-4 py-2 rounded-lg bg-white/80 border border-black/5 text-black/80 placeholder-black/40 focus:outline-none focus:ring-1 focus:ring-[#4f8eff]/30 focus:border-transparent backdrop-blur-sm"
                       />
                     </div>
                     <motion.button 
-                      className="bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] text-white px-6 py-2.5 rounded-lg font-medium transition-all duration-300"
+                      className="bg-[#4f8eff] text-white px-5 py-2 rounded-lg font-medium transition-all duration-300"
                       whileHover={{ 
-                        scale: 1.02,
-                        boxShadow: '0 0 15px rgba(79, 142, 255, 0.4)'
+                        scale: 1.01,
+                        boxShadow: '0 0 8px rgba(79, 142, 255, 0.2)'
                       }}
                     >
                       Search
@@ -95,7 +94,7 @@ export default function HomePage() {
         </section>
 
         {/* Trust Badges */}
-        <section className="container mx-auto px-4 py-8 border-b border-opacity-10 border-white">
+        <section className="container mx-auto px-4 py-8 border-b border-opacity-10 border-black">
           <motion.div 
             initial="hidden"
             whileInView="visible"
@@ -106,55 +105,55 @@ export default function HomePage() {
           </motion.div>
         </section>
 
-        {/* Categories Section */}
-        <section className="dark-gradient-bg py-12">
+        {/* Categories Section - More compact */}
+        <section className="dark-gradient-bg py-8">
           <div className="container mx-auto px-4">
             <motion.div 
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="mb-8"
+              className="mb-4"
             >
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-2">Shop by Category</h2>
-              <p className="text-white/50 text-lg font-light">Discover products across all departments</p>
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-1">Shop by Category</h2>
+              <p className="text-black/60 text-base font-light">Discover products across all departments</p>
             </motion.div>
             <CategoryGrid />
           </div>
         </section>
 
-        {/* Featured Brands */}
-        <section className="container mx-auto px-4 py-12 border-b border-opacity-10 border-white">
+        {/* Featured Brands - More compact */}
+        <section className="container mx-auto px-4 py-8 border-b border-opacity-10 border-black">
           <motion.div 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeInUp}
           >
-            <div className="mb-8">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-2">Featured Brands</h2>
-              <p className="text-white/50 text-lg font-light">Shop from our curated collection of top brands</p>
+            <div className="mb-4">
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-1">Featured Brands</h2>
+              <p className="text-black/60 text-base font-light">Shop from our curated collection of top brands</p>
             </div>
             <FeaturedBrands />
           </motion.div>
         </section>
 
-        {/* Flash Deals Section */}
-        <section className="dark-gradient-bg py-12">
+        {/* Flash Deals Section - More compact */}
+        <section className="dark-gradient-bg py-8">
           <div className="container mx-auto px-4">
             <motion.div 
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="flex items-center justify-between mb-8"
+              className="flex items-center justify-between mb-4"
             >
               <div>
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-2">Today's Best Deals</h2>
-                <p className="text-white/50 text-lg font-light">Limited time offers with exceptional savings</p>
+                <h2 className="text-2xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-1">Today's Best Deals</h2>
+                <p className="text-black/60 text-base font-light">Limited time offers with exceptional savings</p>
               </div>
               <motion.button 
-                className="hidden md:flex items-center text-white/70 hover:text-white font-medium"
+                className="hidden md:flex items-center text-black/70 hover:text-black font-medium"
                 whileHover={{ 
                   scale: 1.02,
                   color: 'rgba(79, 142, 255, 1)'
@@ -165,9 +164,9 @@ export default function HomePage() {
               </motion.button>
             </motion.div>
             <FlashDeals />
-            <div className="mt-8 text-center md:hidden">
+            <div className="mt-6 text-center md:hidden">
               <motion.button 
-                className="inline-flex items-center text-white/70 hover:text-white font-medium"
+                className="inline-flex items-center text-black/70 hover:text-black font-medium"
                 whileHover={{ 
                   scale: 1.02,
                   color: 'rgba(79, 142, 255, 1)'
@@ -181,38 +180,38 @@ export default function HomePage() {
         </section>
 
         {/* Brand Showcase */}
-        <section className="dark-gradient-bg py-16">
+        <section className="dark-gradient-bg py-8">
           <div className="container mx-auto px-4">
             <motion.div 
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="mb-8 text-center"
+              className="mb-4 text-center"
             >
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-2">Top Global Brands</h2>
-              <p className="text-white/50 text-lg font-light">Shop from the world's most trusted manufacturers</p>
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-1">Top Global Brands</h2>
+              <p className="text-black/60 text-base font-light">Shop from the world's most trusted manufacturers</p>
             </motion.div>
             <BrandShowcase />
           </div>
         </section>
 
-        {/* Trending Products Section */}
-        <section className="dark-gradient-bg py-12">
+        {/* Trending Products Section - More compact */}
+        <section className="dark-gradient-bg py-8">
           <div className="container mx-auto px-4">
             <motion.div 
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="flex items-center justify-between mb-8"
+              className="flex items-center justify-between mb-4"
             >
               <div>
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-2">Trending Products</h2>
-                <p className="text-white/50 text-lg font-light">Most popular products based on customer purchases</p>
+                <h2 className="text-2xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-1">Trending Products</h2>
+                <p className="text-black/60 text-base font-light">Most popular products based on customer purchases</p>
               </div>
               <motion.button 
-                className="hidden md:flex items-center text-white/70 hover:text-white font-medium"
+                className="hidden md:flex items-center text-black/70 hover:text-black font-medium"
                 whileHover={{ 
                   scale: 1.02,
                   color: 'rgba(79, 142, 255, 1)'
@@ -223,9 +222,9 @@ export default function HomePage() {
               </motion.button>
             </motion.div>
             <TrendingProducts />
-            <div className="mt-8 text-center md:hidden">
+            <div className="mt-6 text-center md:hidden">
               <motion.button 
-                className="inline-flex items-center text-white/70 hover:text-white font-medium"
+                className="inline-flex items-center text-black/70 hover:text-black font-medium"
                 whileHover={{ 
                   scale: 1.02,
                   color: 'rgba(79, 142, 255, 1)'
@@ -238,55 +237,43 @@ export default function HomePage() {
           </div>
         </section>
         
-        {/* Featured Sellers Section */}
-        <section className="py-12 dark-gradient-bg">
+        {/* Featured Sellers Section - More compact */}
+        <section className="py-8 dark-gradient-bg">
           <div className="container mx-auto px-4">
             <motion.div 
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="mb-8"
+              className="mb-4"
             >
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-2">Featured Sellers</h2>
-              <p className="text-white/50 text-lg font-light">Discover unique products from our top marketplace sellers</p>
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-1">Featured Sellers</h2>
+              <p className="text-black/60 text-base font-light">Discover unique products from our top marketplace sellers</p>
             </motion.div>
             <FeaturedSellers />
           </div>
         </section>
 
-        {/* Recently Viewed */}
-        <section className="container mx-auto px-4 py-12 border-t border-opacity-10 border-white">
+        {/* Recently Viewed - More compact */}
+        <section className="container mx-auto px-4 py-8 border-t border-opacity-10 border-black">
           <motion.div 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeInUp}
           >
-            <div className="mb-8">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-2">Recently Viewed</h2>
-              <p className="text-white/50 text-lg font-light">Continue shopping where you left off</p>
+            <div className="mb-4">
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-1">Recently Viewed</h2>
+              <p className="text-black/60 text-base font-light">Continue shopping where you left off</p>
             </div>
             <RecentlyViewed />
           </motion.div>
         </section>
 
-        {/* Newsletter Signup */}
-        <section className="dark-gradient-bg py-16">
-          <div className="container mx-auto px-4">
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-            >
-              <NewsletterSignup />
-            </motion.div>
-          </div>
-        </section>
+        {/* Newsletter section removed as requested */}
 
-        {/* Mobile App Banner */}
-        <section className="container mx-auto px-4 py-12 border-t border-opacity-10 border-white">
+        {/* Mobile App Banner - More compact */}
+        <section className="container mx-auto px-4 py-8 border-t border-opacity-10 border-black">
           <motion.div 
             initial="hidden"
             whileInView="visible"
@@ -302,4 +289,4 @@ export default function HomePage() {
       <Footer />
     </InteractiveBackground>
   )
-}                                                                      
+}                                                                                                      
