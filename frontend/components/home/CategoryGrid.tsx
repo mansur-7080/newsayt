@@ -150,7 +150,7 @@ export default function CategoryGrid() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
+      className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"
     >
       {categories.map((category) => {
         const Icon = category.icon
@@ -158,19 +158,19 @@ export default function CategoryGrid() {
           <motion.div key={category.id} variants={item}>
             <Link href={category.href}>
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white rounded-lg p-6 text-center cursor-pointer hover:shadow-lg transition-all group"
+                className="dark-card p-4 text-center cursor-pointer interactive-element border-highlight transition-all duration-300"
               >
-                <div className={`w-16 h-16 ${category.bgColor} rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform`}>
-                  <Icon className={`w-8 h-8 ${category.color}`} />
+                <div className="flex flex-col items-center">
+                  <div className="w-12 h-12 bg-[var(--hover-blue)] rounded-md flex items-center justify-center mb-2 transition-colors">
+                    <Icon className="w-6 h-6 text-[var(--primary-blue)]" />
+                  </div>
+                  <h3 className="font-medium text-white text-sm mb-1">
+                    {category.name}
+                  </h3>
+                  <p className="text-xs text-white/60">
+                    {category.count} products
+                  </p>
                 </div>
-                <h3 className="font-semibold text-gray-900 text-sm mb-1">
-                  {category.name}
-                </h3>
-                <p className="text-xs text-gray-500">
-                  {category.count} products
-                </p>
               </motion.div>
             </Link>
           </motion.div>
@@ -178,4 +178,4 @@ export default function CategoryGrid() {
       })}
     </motion.div>
   )
-} 
+}        

@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Star, TrendingUp, Eye, ShoppingCart, Heart } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -133,41 +132,41 @@ export default function TrendingProducts() {
           className="group"
         >
           <Link href={`/product/${product.id}`}>
-            <div className="bg-white rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+            <div className="dark-card rounded-lg overflow-hidden hover:shadow-glow transition-all duration-300 interactive-element border-highlight">
               {/* Image container */}
-              <div className="relative h-64 bg-gray-100 overflow-hidden">
+              <div className="relative h-64 bg-opacity-10 bg-indigo-900 overflow-hidden">
                 {/* Badges */}
                 <div className="absolute top-2 left-2 z-10 flex flex-col gap-2">
                   {product.isNew && (
-                    <span className="bg-green-500 text-white px-2 py-1 rounded text-xs font-semibold">
+                    <span className="bg-[var(--primary-blue)] text-white px-2 py-1 rounded text-xs font-semibold">
                       NEW
                     </span>
                   )}
                   {product.isBestSeller && (
-                    <span className="bg-orange-500 text-white px-2 py-1 rounded text-xs font-semibold">
+                    <span className="bg-[var(--primary-green)] text-white px-2 py-1 rounded text-xs font-semibold">
                       BEST SELLER
                     </span>
                   )}
                   {product.originalPrice && (
-                    <span className="bg-red-500 text-white px-2 py-1 rounded text-xs font-semibold">
+                    <span className="bg-[var(--selection-bg)] text-white px-2 py-1 rounded text-xs font-semibold">
                       -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
                     </span>
                   )}
                 </div>
 
                 {/* Wishlist button */}
-                <button className="absolute top-2 right-2 z-10 w-8 h-8 bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Heart className="w-4 h-4" />
+                <button className="absolute top-2 right-2 z-10 w-8 h-8 bg-opacity-20 bg-indigo-900 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-opacity-30 interactive-element border-highlight">
+                  <Heart className="w-4 h-4 text-indigo-300" />
                 </button>
 
                 {/* Product image placeholder */}
-                <div className="w-full h-full flex items-center justify-center text-gray-400 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-full h-full flex items-center justify-center text-indigo-300/50 group-hover:scale-110 transition-transform duration-300">
                   <ShoppingCart className="w-20 h-20" />
                 </div>
 
                 {/* Quick add to cart */}
                 <div className="absolute bottom-0 left-0 right-0 bg-black/80 text-white p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <button className="w-full flex items-center justify-center gap-2 font-semibold">
+                  <button className="w-full flex items-center justify-center gap-2 font-semibold interactive-element border-highlight">
                     <ShoppingCart className="w-4 h-4" />
                     Quick Add to Cart
                   </button>
@@ -177,10 +176,10 @@ export default function TrendingProducts() {
               {/* Product info */}
               <div className="p-4">
                 {/* Category */}
-                <p className="text-xs text-gray-500 mb-1">{product.category}</p>
+                <p className="text-xs text-white/60 mb-1">{product.category}</p>
 
                 {/* Product name */}
-                <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-orange-500 transition-colors">
+                <h3 className="font-medium text-white mb-2 line-clamp-2 group-hover:text-indigo-300 transition-colors">
                   {product.name}
                 </h3>
 
@@ -193,23 +192,23 @@ export default function TrendingProducts() {
                         className={`w-4 h-4 ${
                           i < Math.floor(product.rating)
                             ? 'fill-yellow-400 text-yellow-400'
-                            : 'text-gray-300'
+                            : 'text-white/30'
                         }`}
                       />
                     ))}
                   </div>
-                  <span className="text-sm text-gray-600">
+                  <span className="text-sm text-white/75">
                     {product.rating} ({product.reviews.toLocaleString()})
                   </span>
                 </div>
 
                 {/* Price */}
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xl font-bold text-gray-900">
+                  <span className="text-lg font-bold text-[var(--primary-blue)]">
                     ${product.price}
                   </span>
                   {product.originalPrice && (
-                    <span className="text-sm text-gray-500 line-through">
+                    <span className="text-sm text-white/50 line-through">
                       ${product.originalPrice}
                     </span>
                   )}
@@ -217,11 +216,11 @@ export default function TrendingProducts() {
 
                 {/* Trending info */}
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1 text-sm text-green-600">
+                  <div className="flex items-center gap-1 text-sm text-[var(--primary-green)]">
                     <TrendingUp className="w-4 h-4" />
                     <span className="font-medium">{product.trending}% trending</span>
                   </div>
-                  <div className="flex items-center gap-1 text-sm text-gray-500">
+                  <div className="flex items-center gap-1 text-sm text-white/60">
                     <Eye className="w-4 h-4" />
                     <span>{(product.views / 1000).toFixed(1)}k views</span>
                   </div>
@@ -233,4 +232,4 @@ export default function TrendingProducts() {
       ))}
     </div>
   )
-} 
+}                

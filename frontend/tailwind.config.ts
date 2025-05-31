@@ -11,8 +11,19 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: {
+        DEFAULT: '1rem',
+        sm: '1.5rem',
+        md: '2rem',
+        lg: '2.5rem',
+        xl: '3rem',
+        '2xl': '4rem',
+      },
       screens: {
+        'sm': '640px',
+        'md': '768px', 
+        'lg': '1024px',
+        'xl': '1280px',
         '2xl': '1400px',
       },
     },
@@ -26,17 +37,17 @@ const config: Config = {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
-          50: '#fff7ed',
-          100: '#ffedd5',
-          200: '#fed7aa',
-          300: '#fdba74',
-          400: '#fb923c',
-          500: '#f97316',
-          600: '#ea580c',
-          700: '#c2410c',
-          800: '#9a3412',
-          900: '#7c2d12',
-          950: '#431407',
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+          950: '#172554',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
@@ -111,6 +122,10 @@ const config: Config = {
         'glow': 'glow 2s ease-in-out infinite',
         'gradient': 'gradient 3s ease infinite',
         'skeleton': 'skeleton 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'soft-line-appear': 'soft-line-appear 0.5s ease-out forwards',
+        'soft-line-fade': 'soft-line-fade 0.5s ease-out forwards',
+        'mouse-track': 'mouse-track 3s ease-in-out infinite',
+        'particle-float': 'particle-float 5s ease-in-out infinite',
       },
       keyframes: {
         'accordion-down': {
@@ -169,6 +184,25 @@ const config: Config = {
         skeleton: {
           '0%': { backgroundPosition: '-200px 0' },
           '100%': { backgroundPosition: 'calc(200px + 100%) 0' },
+        },
+        'soft-line-appear': {
+          '0%': { opacity: '0', width: '0' },
+          '100%': { opacity: '0.5', width: '100%' },
+        },
+        'soft-line-fade': {
+          '0%': { opacity: '0.5' },
+          '100%': { opacity: '0' },
+        },
+        'mouse-track': {
+          '0%': { transform: 'translate(-50%, -50%) scale(0.9)', opacity: '0.2' },
+          '50%': { transform: 'translate(-50%, -50%) scale(1)', opacity: '0.3' },
+          '100%': { transform: 'translate(-50%, -50%) scale(0.9)', opacity: '0.2' },
+        },
+        'particle-float': {
+          '0%, 100%': { transform: 'translateY(0) translateX(0)' },
+          '25%': { transform: 'translateY(-5px) translateX(5px)' },
+          '50%': { transform: 'translateY(0) translateX(10px)' },
+          '75%': { transform: 'translateY(5px) translateX(5px)' },
         },
       },
       backgroundImage: {
@@ -242,4 +276,4 @@ const config: Config = {
   ],
 }
 
-export default config 
+export default config      

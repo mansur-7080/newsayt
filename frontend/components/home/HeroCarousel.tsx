@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -9,38 +8,38 @@ const slides = [
   {
     id: 1,
     image: '/images/hero/electronics-sale.jpg',
-    title: 'Mega Electronics Sale',
-    subtitle: 'Up to 70% OFF on Latest Gadgets',
+    title: 'Tech Deals',
+    subtitle: 'Save on the latest electronics and components',
     cta: 'Shop Now',
-    bgColor: 'from-blue-600 to-purple-700',
+    bgColor: 'from-blue-600 to-blue-800',
     link: '/deals/electronics'
   },
   {
     id: 2,
     image: '/images/hero/fashion-week.jpg',
-    title: 'Fashion Week Special',
-    subtitle: 'New Arrivals with 50% Discount',
-    cta: 'Explore Collection',
-    bgColor: 'from-pink-500 to-rose-600',
-    link: '/deals/fashion'
+    title: 'PC Components',
+    subtitle: 'Build your dream setup with premium parts',
+    cta: 'Explore Products',
+    bgColor: 'from-gray-700 to-gray-900',
+    link: '/category/components'
   },
   {
     id: 3,
     image: '/images/hero/home-decor.jpg',
-    title: 'Transform Your Home',
-    subtitle: 'Premium Furniture at Wholesale Prices',
-    cta: 'Discover More',
-    bgColor: 'from-emerald-600 to-teal-700',
-    link: '/deals/home'
+    title: 'Office Solutions',
+    subtitle: 'Professional equipment for home and business',
+    cta: 'View Selection',
+    bgColor: 'from-blue-700 to-blue-900',
+    link: '/category/office'
   },
   {
     id: 4,
     image: '/images/hero/sports-gear.jpg',
-    title: 'Sports & Fitness',
-    subtitle: 'Professional Equipment for Less',
-    cta: 'Get Fit Now',
-    bgColor: 'from-orange-500 to-red-600',
-    link: '/deals/sports'
+    title: 'Gaming Essentials',
+    subtitle: 'Level up your gaming experience',
+    cta: 'Shop Gaming',
+    bgColor: 'from-gray-800 to-gray-900',
+    link: '/category/gaming'
   }
 ]
 
@@ -76,50 +75,50 @@ export default function HeroCarousel() {
   if (!activeSlide) return null
 
   return (
-    <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden">
+    <div className="relative w-full h-[400px] md:h-[450px] overflow-hidden dark-gradient-bg subtle-grid">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}
-          initial={{ opacity: 0, x: 300 }}
+          initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -300 }}
-          transition={{ duration: 0.5 }}
+          exit={{ opacity: 0, x: -100 }}
+          transition={{ duration: 0.3 }}
           className="absolute inset-0"
         >
-          <div className={`absolute inset-0 bg-gradient-to-r ${activeSlide.bgColor}`}>
+          <div className="absolute inset-0 dark-gradient-bg subtle-dots">
             <div className="container mx-auto px-4 h-full flex items-center">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div className="text-white">
                   <motion.h1
-                    initial={{ y: 20, opacity: 0 }}
+                    initial={{ y: 10, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="text-4xl md:text-6xl font-bold mb-4"
+                    transition={{ delay: 0.1 }}
+                    className="text-3xl md:text-4xl font-bold mb-3 gradient-blue-indigo-text"
                   >
                     {activeSlide.title}
                   </motion.h1>
                   <motion.p
-                    initial={{ y: 20, opacity: 0 }}
+                    initial={{ y: 10, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                    className="text-xl md:text-2xl mb-8 opacity-90"
+                    transition={{ delay: 0.2 }}
+                    className="text-lg md:text-xl mb-6 text-white/75"
                   >
                     {activeSlide.subtitle}
                   </motion.p>
                   <motion.a
                     href={activeSlide.link}
-                    initial={{ y: 20, opacity: 0 }}
+                    initial={{ y: 10, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                    className="inline-block px-8 py-4 bg-white text-gray-900 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                    transition={{ delay: 0.3 }}
+                    className="inline-block px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl border-highlight interactive-element"
                   >
                     {activeSlide.cta}
                   </motion.a>
                 </div>
                 <div className="hidden md:block">
                   {/* Placeholder for image - in real app, use actual images */}
-                  <div className="w-full h-[400px] bg-white/20 rounded-lg backdrop-blur-sm flex items-center justify-center">
-                    <span className="text-white/60 text-xl">Product Image</span>
+                  <div className="w-full h-[300px] glass-card rounded-xl flex items-center justify-center border border-white/10 shadow-glow">
+                    <span className="text-white/70 text-lg">Featured Products</span>
                   </div>
                 </div>
               </div>
@@ -131,31 +130,31 @@ export default function HeroCarousel() {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 glass-card rounded-xl flex items-center justify-center hover:bg-white/10 transition-all duration-300 border border-white/10"
       >
-        <ChevronLeft className="w-6 h-6 text-white" />
+        <ChevronLeft className="w-5 h-5 text-white" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 glass-card rounded-xl flex items-center justify-center hover:bg-white/10 transition-all duration-300 border border-white/10"
       >
-        <ChevronRight className="w-6 h-6 text-white" />
+        <ChevronRight className="w-5 h-5 text-white" />
       </button>
 
       {/* Dots Indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
+            className={`h-2 rounded-full transition-all ${
               index === currentSlide
-                ? 'bg-white w-8'
-                : 'bg-white/50 hover:bg-white/70'
+                ? 'bg-gradient-to-r from-indigo-500 to-purple-500 w-6'
+                : 'bg-white/30 hover:bg-white/50 w-2'
             }`}
           />
         ))}
       </div>
     </div>
   )
-} 
+}        
