@@ -236,6 +236,100 @@ h3 {
   box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
 }
 
+/* Interactive hover effects with soft lines */
+.interactive-element {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.interactive-element::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                              rgba(59, 130, 246, 0.1), 
+                              transparent 100px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.interactive-element:hover::before {
+  opacity: 1;
+}
+
+/* Mouse position tracking for interactive elements */
+.interactive-element:hover {
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+}
+
+/* Add this JavaScript to track mouse position:
+document.addEventListener('mousemove', function(e) {
+  document.querySelectorAll('.interactive-element').forEach(function(element) {
+    const rect = element.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / element.offsetWidth) * 100;
+    const y = ((e.clientY - rect.top) / element.offsetHeight) * 100;
+    
+    element.style.setProperty('--mouse-x', `${x}%`);
+    element.style.setProperty('--mouse-y', `${y}%`);
+  });
+});
+*/
+
+/* Soft line animations */
+@keyframes softLineAppear {
+  0% { opacity: 0; width: 0; }
+  100% { opacity: 0.5; width: 100%; }
+}
+
+@keyframes softLineFade {
+  0% { opacity: 0.5; }
+  100% { opacity: 0; }
+}
+
+.soft-line {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, 
+                             transparent, 
+                             rgba(59, 130, 246, 0.5), 
+                             transparent);
+  opacity: 0;
+}
+
+.soft-line-appear {
+  animation: softLineAppear 0.5s ease-out forwards;
+}
+
+.soft-line-fade {
+  animation: softLineFade 0.5s ease-out forwards;
+}
+
+/* Mouse tracking effect */
+.mouse-tracking-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.mouse-tracking-effect {
+  position: absolute;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                             rgba(59, 130, 246, 0.1), 
+                             transparent 150px);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
 /* Devin.ai inspired gradients */
 .gradient-blue-indigo {
   background: linear-gradient(135deg, var(--devin-blue-light), var(--devin-indigo-light));
@@ -253,4 +347,4 @@ h3 {
   background: linear-gradient(135deg, var(--devin-blue-light), var(--devin-indigo-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}         
+}             
