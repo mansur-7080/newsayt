@@ -111,13 +111,13 @@ export default function FlashDeals() {
       {/* Scroll buttons */}
       <button
         onClick={() => scroll('left')}
-        className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-100"
+        className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-opacity-20 bg-indigo-900 backdrop-blur-sm shadow-glow rounded-full flex items-center justify-center hover:bg-opacity-30 text-white interactive-element border-highlight"
       >
         <ChevronLeft className="w-5 h-5" />
       </button>
       <button
         onClick={() => scroll('right')}
-        className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-100"
+        className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-opacity-20 bg-indigo-900 backdrop-blur-sm shadow-glow rounded-full flex items-center justify-center hover:bg-opacity-30 text-white interactive-element border-highlight"
       >
         <ChevronRight className="w-5 h-5" />
       </button>
@@ -135,83 +135,83 @@ export default function FlashDeals() {
               whileHover={{ y: -5 }}
               onHoverStart={() => setHoveredId(product.id)}
               onHoverEnd={() => setHoveredId(null)}
-              className="flex-shrink-0 w-[300px] bg-white border rounded-lg overflow-hidden hover:shadow-xl transition-shadow"
+              className="flex-shrink-0 w-[300px] dark-card border border-opacity-10 border-white rounded-lg overflow-hidden hover:shadow-glow transition-all interactive-element border-highlight"
             >
               {/* Image container */}
-              <div className="relative h-[200px] bg-gray-100">
+              <div className="relative h-[200px] bg-opacity-10 bg-indigo-900">
                 {/* Discount badge */}
-                <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-md font-bold text-sm flex items-center gap-1">
+                <div className="absolute top-2 left-2 bg-purple-600 text-white px-2 py-1 rounded-sm text-xs font-medium flex items-center gap-1">
                   <Zap className="w-3 h-3" />
                   {product.discount}% OFF
                 </div>
                 
                 {/* Wishlist button */}
-                <button className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-gray-100">
-                  <Heart className="w-4 h-4" />
+                <button className="absolute top-2 right-2 w-7 h-7 bg-opacity-20 bg-indigo-900 backdrop-blur-sm rounded-sm flex items-center justify-center hover:bg-opacity-30 border border-opacity-10 border-white interactive-element border-highlight">
+                  <Heart className="w-4 h-4 text-indigo-300" />
                 </button>
 
                 {/* Product image placeholder */}
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
+                <div className="w-full h-full flex items-center justify-center text-indigo-300/50">
                   <ShoppingCart className="w-16 h-16" />
                 </div>
               </div>
 
               {/* Product info */}
-              <div className="p-4">
-                <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
+              <div className="p-3">
+                <h3 className="font-medium text-white mb-1 text-sm line-clamp-2">
                   {product.name}
                 </h3>
 
                 {/* Rating */}
                 <div className="flex items-center gap-2 mb-2">
                   <div className="flex items-center">
-                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    <span className="text-sm font-medium ml-1">{product.rating}</span>
+                    <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                    <span className="text-xs font-medium ml-1 text-white">{product.rating}</span>
                   </div>
-                  <span className="text-sm text-gray-500">({product.sold} sold)</span>
+                  <span className="text-xs text-white/60">({product.sold} sold)</span>
                 </div>
 
                 {/* Price */}
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-2xl font-bold text-red-600">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-lg font-bold text-indigo-300">
                     ${product.discountPrice}
                   </span>
-                  <span className="text-sm text-gray-500 line-through">
+                  <span className="text-xs text-white/50 line-through">
                     ${product.originalPrice}
                   </span>
                 </div>
 
                 {/* Stock progress bar */}
-                <div className="mb-3">
-                  <div className="flex justify-between text-xs text-gray-600 mb-1">
+                <div className="mb-2">
+                  <div className="flex justify-between text-xs text-white/70 mb-1">
                     <span>Available: {product.stock - product.sold}</span>
                     <span>{Math.round((product.sold / product.stock) * 100)}% claimed</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="w-full bg-white/10 rounded-sm h-1.5">
                     <div
-                      className="bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full transition-all duration-300"
+                      className="bg-indigo-600 h-1.5 rounded-sm transition-all duration-300"
                       style={{ width: `${(product.sold / product.stock) * 100}%` }}
                     />
                   </div>
                 </div>
 
                 {/* Time left */}
-                <div className="flex items-center gap-1 text-sm text-gray-600 mb-3">
-                  <Timer className="w-4 h-4" />
+                <div className="flex items-center gap-1 text-xs text-white/70 mb-2">
+                  <Timer className="w-3 h-3" />
                   <span>Ends in: </span>
-                  <span className="font-mono font-bold text-red-600">{product.timeLeft}</span>
+                  <span className="font-mono font-medium text-indigo-300">{product.timeLeft}</span>
                 </div>
 
                 {/* Add to cart button */}
                 <motion.button
                   whileTap={{ scale: 0.95 }}
-                  className={`w-full py-2 rounded-lg font-semibold transition-colors ${
+                  className={`w-full py-1.5 rounded-sm text-sm font-medium transition-colors interactive-element ${
                     hoveredId === product.id
-                      ? 'bg-orange-500 text-white'
-                      : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                      ? 'bg-[var(--primary-blue)] text-white'
+                      : 'bg-[var(--hover-blue)] text-white hover:bg-[var(--selection-bg)] border border-[var(--border-highlight)]'
                   }`}
                 >
-                  <ShoppingCart className="w-4 h-4 inline mr-2" />
+                  <ShoppingCart className="w-3 h-3 inline mr-1" />
                   Add to Cart
                 </motion.button>
               </div>
@@ -227,4 +227,4 @@ export default function FlashDeals() {
       `}</style>
     </div>
   )
-}  
+}            

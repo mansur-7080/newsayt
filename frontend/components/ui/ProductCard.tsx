@@ -42,7 +42,7 @@ export function ProductCard({ product, className = '' }: ProductCardProps) {
       className={`group relative dark-card rounded-lg overflow-hidden border border-opacity-5 border-white hover:border-opacity-0 transition-all duration-500 interactive-element ${className}`}
       whileHover={{ 
         y: -4, 
-        boxShadow: '0 0 20px rgba(79, 142, 255, 0.15), 0 0 5px rgba(65, 241, 182, 0.1)',
+        boxShadow: '0 0 20px var(--selection-bg), 0 0 5px var(--hover-green)',
         transition: { duration: 0.3, ease: "easeOut" }
       }}
     >
@@ -78,7 +78,7 @@ export function ProductCard({ product, className = '' }: ProductCardProps) {
                 }}
                 whileHover={{ 
                   scale: 1.1,
-                  boxShadow: '0 0 10px rgba(79, 142, 255, 0.3)'
+                  boxShadow: '0 0 10px var(--hover-blue)'
                 }}
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
@@ -92,7 +92,7 @@ export function ProductCard({ product, className = '' }: ProductCardProps) {
                 }}
                 whileHover={{ 
                   scale: 1.1,
-                  boxShadow: '0 0 10px rgba(79, 142, 255, 0.3)'
+                  boxShadow: '0 0 10px var(--hover-blue)'
                 }}
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
@@ -117,13 +117,13 @@ export function ProductCard({ product, className = '' }: ProductCardProps) {
             {/* Quick add to cart */}
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-3">
               <motion.button 
-                className="w-full bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] text-white py-1.5 px-3 rounded text-sm font-medium flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300"
+                className="w-full bg-gradient-to-r from-[var(--primary-blue)] to-[var(--primary-green)] text-white py-1.5 px-3 rounded text-sm font-medium flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300"
                 onClick={(e) => {
                   e.preventDefault()
                 }}
                 whileHover={{ 
                   scale: 1.02,
-                  boxShadow: '0 0 15px rgba(79, 142, 255, 0.4)'
+                  boxShadow: '0 0 15px var(--selection-bg)'
                 }}
                 initial={{ y: 5, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -172,7 +172,7 @@ export function ProductCard({ product, className = '' }: ProductCardProps) {
 
             {/* Price */}
             <div className="flex items-baseline gap-2 mb-2">
-              <span className="text-lg font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent">
+              <span className="text-lg font-bold bg-gradient-to-r from-[var(--primary-blue)] to-[var(--primary-green)] bg-clip-text text-transparent">
                 {formatPrice(product.price)}
               </span>
               {product.originalPrice && (
@@ -181,7 +181,7 @@ export function ProductCard({ product, className = '' }: ProductCardProps) {
                 </span>
               )}
               {discount > 0 && (
-                <span className="text-xs font-medium text-[#41f1b6]">
+                <span className="text-xs font-medium text-[var(--primary-green)]">
                   {discount}% off
                 </span>
               )}
@@ -214,7 +214,7 @@ export function ProductCard({ product, className = '' }: ProductCardProps) {
             {/* Additional info */}
             {product.trending && (
               <div className="flex items-center justify-between mt-2 pt-2 border-t border-white/5">
-                <div className="flex items-center gap-1 text-xs text-[#41f1b6]">
+                <div className="flex items-center gap-1 text-xs text-[var(--primary-green)]">
                   <TrendingUp className="w-3 h-3" />
                   <span className="font-medium">{product.trending}% trending</span>
                 </div>

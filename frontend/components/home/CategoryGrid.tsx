@@ -161,8 +161,8 @@ export default function CategoryGrid() {
                 className="dark-card p-4 text-center cursor-pointer interactive-element border-highlight transition-all duration-300"
               >
                 <div className="flex flex-col items-center">
-                  <div className="w-12 h-12 bg-opacity-20 bg-indigo-900 rounded-md flex items-center justify-center mb-2 transition-colors">
-                    <Icon className="w-6 h-6 text-indigo-300" />
+                  <div className="w-12 h-12 bg-[var(--hover-blue)] rounded-md flex items-center justify-center mb-2 transition-colors">
+                    <Icon className="w-6 h-6 text-[var(--primary-blue)]" />
                   </div>
                   <h3 className="font-medium text-white text-sm mb-1">
                     {category.name}
@@ -178,4 +178,4 @@ export default function CategoryGrid() {
       })}
     </motion.div>
   )
-}      
+}        
