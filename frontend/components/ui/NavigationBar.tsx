@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react'
+import { Menu, X, ChevronDown, ChevronRight, Store, ShoppingBag } from 'lucide-react'
 import { MegaMenu } from './MegaMenu'
 
 const categories = [
@@ -109,21 +109,23 @@ const pages = [
   { id: 'deals', title: 'Deals', href: '/deals' },
   { id: 'new', title: 'New Arrivals', href: '/new-arrivals' },
   { id: 'bestsellers', title: 'Bestsellers', href: '/bestsellers' },
+  { id: 'marketplace', title: 'Marketplace', href: '/seller', icon: Store },
+  { id: 'sell', title: 'Become a Seller', href: '/seller/register', icon: ShoppingBag },
 ]
 
 export function NavigationBar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="bg-white border-b border-gray-200">
+    <div className="bg-opacity-5 bg-black backdrop-blur-md border-b border-opacity-10 border-black">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between py-3">
+        <div className="flex items-center justify-between py-2">
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 rounded-md hover:bg-gray-100"
+            className="md:hidden p-2 rounded-xl glass-card hover:bg-black/5 transition-all duration-300 border border-black/10 interactive-element"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-6 h-6 text-black" /> : <Menu className="w-6 h-6 text-black" />}
           </button>
 
           {/* Desktop navigation */}
@@ -135,8 +137,9 @@ export function NavigationBar() {
                 <Link
                   key={page.id}
                   href={page.href}
-                  className="text-sm font-medium text-gray-700 hover:text-orange-600"
+                  className="text-sm font-medium text-black hover:text-[#4f8eff] transition-all duration-300 flex items-center interactive-element border-highlight"
                 >
+                  {page.icon && <page.icon className="w-4 h-4 mr-1" />}
                   {page.title}
                 </Link>
               ))}
@@ -147,13 +150,13 @@ export function NavigationBar() {
           <div className="flex items-center space-x-4">
             <Link
               href="/gift-cards"
-              className="hidden md:block text-sm font-medium text-gray-700 hover:text-orange-600"
+              className="hidden md:block text-sm font-medium text-black hover:text-[#4f8eff] transition-all duration-300 interactive-element border-highlight"
             >
               Gift Cards
             </Link>
             <Link
               href="/become-seller"
-              className="hidden md:block text-sm font-medium text-gray-700 hover:text-orange-600"
+              className="hidden md:flex items-center px-4 py-2 bg-[#4f8eff] text-white rounded-xl text-sm font-medium transition-all duration-300 shadow-sm hover:shadow-md border-highlight interactive-element"
             >
               Become a Seller
             </Link>
@@ -171,33 +174,34 @@ export function NavigationBar() {
             transition={{ duration: 0.3 }}
             className="md:hidden overflow-hidden"
           >
-            <div className="px-4 py-3 space-y-1 bg-gray-50">
+            <div className="px-4 py-3 space-y-1 bg-opacity-5 bg-black backdrop-blur-md shadow-inner">
               {categories.map((category) => (
                 <MobileMenuItem key={category.id} item={category} />
               ))}
               
-              <div className="pt-2 mt-2 border-t border-gray-200">
+              <div className="pt-2 mt-2 border-t border-opacity-10 border-black">
                 {pages.map((page) => (
                   <Link
                     key={page.id}
                     href={page.href}
-                    className="block py-2 text-base font-medium text-gray-700 hover:text-orange-600"
+                    className="block py-2 text-base font-medium text-black hover:text-[#4f8eff] transition-colors flex items-center border-highlight"
                   >
+                    {page.icon && <page.icon className="w-5 h-5 mr-2" />}
                     {page.title}
                   </Link>
                 ))}
               </div>
               
-              <div className="pt-2 mt-2 border-t border-gray-200">
+              <div className="pt-2 mt-2 border-t border-opacity-10 border-black">
                 <Link
                   href="/gift-cards"
-                  className="block py-2 text-base font-medium text-gray-700 hover:text-orange-600"
+                  className="block py-2 text-base font-medium text-black hover:text-[#4f8eff] transition-colors border-highlight"
                 >
                   Gift Cards
                 </Link>
                 <Link
                   href="/become-seller"
-                  className="block py-2 text-base font-medium text-gray-700 hover:text-orange-600"
+                  className="block py-2 text-base font-medium text-black hover:text-[#4f8eff] transition-colors border-highlight"
                 >
                   Become a Seller
                 </Link>
@@ -218,19 +222,19 @@ function MobileMenuItem({ item }: { item: typeof categories[0] }) {
       <div className="flex items-center justify-between py-2">
         <Link
           href={item.href || '#'}
-          className="text-base font-medium text-gray-700 hover:text-orange-600"
+          className="text-base font-medium text-black hover:text-[#4f8eff] transition-colors border-highlight"
         >
           {item.title}
         </Link>
         {item.children && (
           <button
-            className="p-1 rounded-md hover:bg-gray-200"
+            className="p-1 rounded-md hover:bg-opacity-10 hover:bg-black border-highlight"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? (
-              <ChevronDown className="w-5 h-5" />
+              <ChevronDown className="w-5 h-5 text-black" />
             ) : (
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-5 h-5 text-black" />
             )}
           </button>
         )}
@@ -242,7 +246,7 @@ function MobileMenuItem({ item }: { item: typeof categories[0] }) {
             <div key={child.id} className="py-1">
               <Link
                 href={child.href || '#'}
-                className="text-sm font-medium text-gray-600 hover:text-orange-600"
+                className="text-sm font-medium text-black/75 hover:text-[#4f8eff] transition-colors border-highlight"
               >
                 {child.title}
               </Link>

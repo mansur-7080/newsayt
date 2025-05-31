@@ -39,18 +39,18 @@
   --devin-gray-800: #1f2937;
   --devin-gray-900: #111827;
   
-  /* Devin.ai enterprise dark theme colors */
-  --devin-dark-bg-start: #121a2e;
-  --devin-dark-bg-end: #0f1729;
-  --devin-dark-card: rgba(18, 26, 46, 0.6);
-  --devin-dark-card-hover: rgba(25, 35, 60, 0.8);
-  --devin-dark-border: rgba(255, 255, 255, 0.08);
-  --devin-dark-border-hover: rgba(255, 255, 255, 0.15);
-  --devin-dark-text: rgba(255, 255, 255, 1);
-  --devin-dark-text-secondary: rgba(255, 255, 255, 0.75);
-  --devin-dark-text-muted: rgba(255, 255, 255, 0.5);
-  --devin-dark-glow: rgba(99, 102, 241, 0.3);
-  --devin-dark-glow-strong: rgba(99, 102, 241, 0.5);
+  /* Devin.ai enterprise light theme colors - 75% lighter */
+  --devin-dark-bg-start: #a8b0c7; /* 75% lighter than #121a2e */
+  --devin-dark-bg-end: #b7c0d4; /* 75% lighter than #0f1729 */
+  --devin-dark-card: rgba(168, 176, 199, 0.6);
+  --devin-dark-card-hover: rgba(180, 188, 210, 0.8);
+  --devin-dark-border: rgba(0, 0, 0, 0.08);
+  --devin-dark-border-hover: rgba(0, 0, 0, 0.15);
+  --devin-dark-text: rgba(0, 0, 0, 0.9);
+  --devin-dark-text-secondary: rgba(0, 0, 0, 0.75);
+  --devin-dark-text-muted: rgba(0, 0, 0, 0.5);
+  --devin-dark-glow: rgba(99, 102, 241, 0.15);
+  --devin-dark-glow-strong: rgba(99, 102, 241, 0.25);
   --devin-accent-gradient-start: #4f8eff;
   --devin-accent-gradient-end: #41f1b6;
 }
@@ -445,9 +445,15 @@ document.addEventListener('mousemove', function(e) {
   text-shadow: 0 2px 10px rgba(79, 142, 255, 0.2);
 }
 
-/* Devin.ai enterprise dark theme gradients */
+/* Devin.ai enterprise light theme gradients */
 .dark-gradient-bg {
   background: linear-gradient(135deg, var(--devin-dark-bg-start), var(--devin-dark-bg-end));
+  color: var(--devin-dark-text); /* Ensure consistent text color */
+}
+
+.light-gradient-bg {
+  background: linear-gradient(135deg, #e6eeff, #f0f4ff); /* 75% lighter sky blue gradient */
+  color: var(--devin-dark-text); /* Ensure consistent text color */
 }
 
 .dark-gradient-accent {
@@ -505,4 +511,4 @@ document.addEventListener('mousemove', function(e) {
   transform: translateZ(0);
   will-change: transform, opacity;
   backface-visibility: hidden;
-}                                    
+}                                            

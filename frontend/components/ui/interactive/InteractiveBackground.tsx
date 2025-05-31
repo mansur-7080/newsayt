@@ -17,11 +17,11 @@ interface InteractiveBackgroundProps {
 export default function InteractiveBackground({
   children,
   className = '',
-  particleCount = 25,
-  particleColor = 'rgba(79, 142, 255, 0.3)',
-  particleSize = 4,
-  particleOpacity = 0.3,
-  gradientColors = ['rgba(79, 142, 255, 0.08)', 'rgba(65, 241, 182, 0.05)'],
+  particleCount = 6, // Further reduced particle count
+  particleColor = 'rgba(79, 142, 255, 0.08)', // Even more subtle color
+  particleSize = 1.5, // Smaller particles
+  particleOpacity = 0.08, // Lower opacity
+  gradientColors = ['rgba(79, 142, 255, 0.03)', 'rgba(65, 241, 182, 0.01)'], // Even more subtle gradient
   disabled = false
 }: InteractiveBackgroundProps) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -61,31 +61,6 @@ export default function InteractiveBackground({
       
       setMousePosition({ x, y })
       
-      setParticles(prev => 
-        prev.map(particle => {
-          const dx = particle.x - x
-          const dy = particle.y - y
-          const distance = Math.sqrt(dx * dx + dy * dy)
-          
-          const maxDistance = 150
-          const factor = Math.min(1, Math.max(0, 1 - distance / maxDistance))
-          
-          let newX = particle.x + dx * factor * 0.05
-          let newY = particle.y + dy * factor * 0.05
-          
-          if (newX < 0) newX = dimensions.width
-          if (newX > dimensions.width) newX = 0
-          if (newY < 0) newY = dimensions.height
-          if (newY > dimensions.height) newY = 0
-          
-          return {
-            ...particle,
-            x: newX,
-            y: newY,
-            opacity: particle.opacity + (factor * 0.1 - 0.05)
-          }
-        })
-      )
     }
     
     const handleResize = () => {
@@ -108,18 +83,16 @@ export default function InteractiveBackground({
     <div ref={containerRef} className={`relative overflow-hidden ${className}`}>
       {!disabled && (
         <div className="absolute inset-0 pointer-events-none">
-          {/* Gradient background */}
+          {/* Gradient background - only visible on hover */}
           <div 
-            className="absolute inset-0 opacity-40 transition-opacity duration-1000 gpu-accelerated"
+            className="absolute inset-0 opacity-20 transition-opacity duration-1000 gpu-accelerated"
             style={{
               background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, ${gradientColors[0]} 0%, ${gradientColors[1]} 50%, transparent 100%)`,
               filter: 'blur(30px)',
             }}
           />
           
-          {/* No grid pattern as per user request */}
-          
-          {/* Particles */}
+          {/* Minimal static particles */}
           {particles.map(particle => (
             <motion.div
               key={particle.id}
@@ -133,13 +106,13 @@ export default function InteractiveBackground({
                 opacity: particle.opacity,
               }}
               animate={{
-                x: [0, Math.random() * 20 - 10, 0],
-                y: [0, Math.random() * 20 - 10, 0],
-                scale: [1, 1.1, 1],
-                opacity: [particle.opacity, particle.opacity * 1.5, particle.opacity]
+                x: [0, Math.random() * 10 - 5, 0], // Reduced movement
+                y: [0, Math.random() * 10 - 5, 0], // Reduced movement
+                scale: [1, 1.05, 1], // Reduced scale change
+                opacity: [particle.opacity, particle.opacity * 1.2, particle.opacity] // Reduced opacity change
               }}
               transition={{
-                duration: 5 + Math.random() * 3,
+                duration: 8 + Math.random() * 4, // Slower animation
                 repeat: Infinity,
                 ease: "easeInOut",
                 repeatType: "reverse"

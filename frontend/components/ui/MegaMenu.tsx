@@ -28,10 +28,10 @@ export function MegaMenu({ items, className = '' }: MegaMenuProps) {
         {items.map((item) => (
           <li key={item.id} className="relative">
             <button
-              className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+              className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors interactive-element border-highlight ${
                 activeItem === item.id
-                  ? 'bg-orange-100 text-orange-700'
-                  : 'hover:bg-gray-100'
+                  ? 'bg-opacity-10 bg-[#4f8eff] text-[#4f8eff]'
+                  : 'hover:bg-opacity-5 hover:bg-black text-black'
               }`}
               onClick={() => setActiveItem(activeItem === item.id ? null : item.id)}
               onMouseEnter={() => item.children && setActiveItem(item.id)}
@@ -49,21 +49,21 @@ export function MegaMenu({ items, className = '' }: MegaMenuProps) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute left-0 z-50 mt-1 w-screen max-w-screen-lg bg-white rounded-lg shadow-xl border border-gray-200"
+                  className="absolute left-0 z-50 mt-1 w-screen max-w-screen-lg bg-opacity-5 bg-black rounded-lg shadow-sm border border-opacity-10 border-black mouse-tracking-container backdrop-blur-sm"
                   style={{ width: '800px' }}
                   onMouseLeave={() => setActiveItem(null)}
                 >
                   <div className="grid grid-cols-4 gap-6 p-6">
                     {item.children.map((child) => (
-                      <div key={child.id} className={`${child.featured ? 'col-span-2 bg-gray-50 p-4 rounded-lg' : ''}`}>
+                      <div key={child.id} className={`${child.featured ? 'col-span-2 bg-opacity-5 bg-[#4f8eff] p-4 rounded-lg' : ''}`}>
                         <Link
                           href={child.href || '#'}
-                          className="block font-medium text-gray-900 hover:text-orange-600 mb-2"
+                          className="block font-medium text-black hover:text-[#4f8eff] mb-2 interactive-element border-highlight"
                         >
                           {child.title}
                         </Link>
                         {child.description && (
-                          <p className="text-sm text-gray-500 mb-4">{child.description}</p>
+                          <p className="text-sm text-black/60 mb-4">{child.description}</p>
                         )}
                         {child.children && (
                           <ul className="space-y-2">
@@ -71,7 +71,7 @@ export function MegaMenu({ items, className = '' }: MegaMenuProps) {
                               <li key={subChild.id}>
                                 <Link
                                   href={subChild.href || '#'}
-                                  className="flex items-center text-sm text-gray-600 hover:text-orange-600"
+                                  className="flex items-center text-sm text-black/75 hover:text-[#4f8eff] interactive-element border-highlight"
                                 >
                                   <ChevronRight className="w-3 h-3 mr-1" />
                                   {subChild.title}

@@ -40,16 +40,16 @@ const staggerContainer = {
 export default function HomePage() {
   return (
     <InteractiveBackground 
-      className="min-h-screen dark-gradient-bg"
-      particleCount={10}
-      particleOpacity={0.15}
-      particleSize={2}
-      gradientColors={['rgba(79, 142, 255, 0.05)', 'rgba(65, 241, 182, 0.03)']}
+      className="min-h-screen light-gradient-bg"
+      particleCount={4}
+      particleOpacity={0.06}
+      particleSize={1.5}
+      gradientColors={['rgba(79, 142, 255, 0.02)', 'rgba(65, 241, 182, 0.01)']}
     >
       <Header />
       
       <MouseTracker className="w-full">
-        <FloatingParticles count={8} minSize={1} maxSize={5} />
+        <FloatingParticles count={4} minSize={1} maxSize={3} />
         <main className="relative z-10">
         {/* Hero Section */}
         <section className="relative">
@@ -106,7 +106,7 @@ export default function HomePage() {
         </section>
 
         {/* Categories Section - More compact */}
-        <section className="dark-gradient-bg py-8">
+        <section className="light-gradient-bg py-8">
           <div className="container mx-auto px-4">
             <motion.div 
               initial="hidden"
@@ -139,7 +139,7 @@ export default function HomePage() {
         </section>
 
         {/* Flash Deals Section - More compact */}
-        <section className="dark-gradient-bg py-8">
+        <section className="light-gradient-bg py-8">
           <div className="container mx-auto px-4">
             <motion.div 
               initial="hidden"
@@ -180,7 +180,7 @@ export default function HomePage() {
         </section>
 
         {/* Brand Showcase */}
-        <section className="dark-gradient-bg py-8">
+        <section className="light-gradient-bg py-8">
           <div className="container mx-auto px-4">
             <motion.div 
               initial="hidden"
@@ -197,7 +197,7 @@ export default function HomePage() {
         </section>
 
         {/* Trending Products Section - More compact */}
-        <section className="dark-gradient-bg py-8">
+        <section className="light-gradient-bg py-8">
           <div className="container mx-auto px-4">
             <motion.div 
               initial="hidden"
@@ -238,7 +238,7 @@ export default function HomePage() {
         </section>
         
         {/* Featured Sellers Section - More compact */}
-        <section className="py-8 dark-gradient-bg">
+        <section className="py-8 light-gradient-bg">
           <div className="container mx-auto px-4">
             <motion.div 
               initial="hidden"
@@ -289,4 +289,4 @@ export default function HomePage() {
       <Footer />
     </InteractiveBackground>
   )
-}                                                                                                      
+}                                                                                                                    
