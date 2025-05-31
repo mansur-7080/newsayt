@@ -39,7 +39,7 @@ export function ProductCard({ product, className = '' }: ProductCardProps) {
 
   return (
     <motion.div
-      className={`group relative bg-white rounded-lg overflow-hidden border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-300 ${className}`}
+      className={`group relative bg-white rounded-lg overflow-hidden border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-300 interactive-element hover-lift ${className}`}
       whileHover={{ y: -3 }}
     >
       <Link href={`/product/${product.slug || product.id}`}>
@@ -68,7 +68,7 @@ export function ProductCard({ product, className = '' }: ProductCardProps) {
             {/* Quick action buttons */}
             <div className="absolute top-2 right-2 z-10 flex flex-col gap-1">
               <button 
-                className="w-8 h-8 bg-white rounded-full shadow-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-100"
+                className="w-8 h-8 bg-white rounded-full shadow-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-100 interactive-element"
                 onClick={(e) => {
                   e.preventDefault()
                 }}
@@ -76,7 +76,7 @@ export function ProductCard({ product, className = '' }: ProductCardProps) {
                 <Heart className="w-4 h-4 text-gray-700" />
               </button>
               <button 
-                className="w-8 h-8 bg-white rounded-full shadow-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-100"
+                className="w-8 h-8 bg-white rounded-full shadow-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-100 interactive-element"
                 onClick={(e) => {
                   e.preventDefault()
                 }}
@@ -93,7 +93,7 @@ export function ProductCard({ product, className = '' }: ProductCardProps) {
             {/* Quick add to cart */}
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
               <button 
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-1.5 px-3 rounded text-sm font-medium flex items-center justify-center gap-1 transition-colors opacity-0 group-hover:opacity-100"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-1.5 px-3 rounded text-sm font-medium flex items-center justify-center gap-1 transition-colors opacity-0 group-hover:opacity-100 interactive-element"
                 onClick={(e) => {
                   e.preventDefault()
                 }}
