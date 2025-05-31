@@ -18,11 +18,11 @@ interface InteractiveBackgroundProps {
 export default function InteractiveBackground({
   children,
   className = '',
-  particleCount = 3, // Further reduced particle count
-  particleColor = 'rgba(79, 142, 255, 0.04)', // Even more subtle color
-  particleSize = 1, // Smaller particles
-  particleOpacity = 0.04, // Lower opacity
-  gradientColors = ['rgba(79, 142, 255, 0.015)', 'rgba(65, 241, 182, 0.005)'], // Even more subtle gradient
+  particleCount = 4, // Increased from 3 to 4 (33% increase)
+  particleColor = 'rgba(79, 142, 255, 0.048)', // Increased from 0.04 to 0.048 (20% increase)
+  particleSize = 1.2, // Increased from 1 to 1.2 (20% increase)
+  particleOpacity = 0.048, // Increased from 0.04 to 0.048 (20% increase)
+  gradientColors = ['rgba(79, 142, 255, 0.018)', 'rgba(65, 241, 182, 0.006)'], // Increased from 0.015/0.005 by 20%
   disabled = false,
   backgroundOnly = true // Default to background-only effects
 }: InteractiveBackgroundProps) {
@@ -94,7 +94,7 @@ export default function InteractiveBackground({
           {/* Gradient background - only visible on hover and when not over UI elements */}
           {(!backgroundOnly || !isOverUIElement) && (
             <div 
-              className="absolute inset-0 opacity-10 transition-opacity duration-1000 gpu-accelerated"
+              className="absolute inset-0 opacity-12 transition-opacity duration-1000 gpu-accelerated" // Increased from opacity-10 to opacity-12 (20% increase)
               style={{
                 background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, ${gradientColors[0]} 0%, ${gradientColors[1]} 50%, transparent 100%)`,
                 filter: 'blur(40px)',

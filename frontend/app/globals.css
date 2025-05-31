@@ -511,4 +511,45 @@ document.addEventListener('mousemove', function(e) {
   transform: translateZ(0);
   will-change: transform, opacity;
   backface-visibility: hidden;
-}                                              
+}
+
+/* Zoom-responsive layouts */
+@media (min-resolution: 1.25dppx) {
+  .container { padding: 1rem; }
+  .grid { gap: 0.75rem; }
+}
+
+@media (min-resolution: 1.5dppx) {
+  .container { padding: 0.75rem; }
+  .grid { gap: 0.5rem; }
+}
+
+/* Better content density at different zoom levels */
+.responsive-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+}
+
+/* Consistent color scheme */
+:root {
+  --primary-blue: #4f8eff;
+  --primary-green: #41f1b6;
+  --hover-blue: rgba(79, 142, 255, 0.1);
+  --hover-green: rgba(65, 241, 182, 0.1);
+  --selection-bg: rgba(79, 142, 255, 0.15);
+  --border-highlight: rgba(79, 142, 255, 0.2);
+}
+
+/* Consistent interactive elements */
+.interactive-element {
+  transition: all 0.3s ease;
+}
+
+.interactive-element:hover {
+  background-color: var(--hover-blue);
+  border-color: var(--primary-blue);
+}
+
+.selected-element {
+  background-color: var(--selection-bg);
+  border-color: var(--primary-blue);
+} 

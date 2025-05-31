@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className={`${inter.className} dark`}>
         <Providers>
           <MouseTrackingScript />
           {children}
@@ -26,4 +26,4 @@ export default function RootLayout({
       </body>
     </html>
   )
-}     
+}       

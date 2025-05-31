@@ -40,15 +40,15 @@ export default function HomePage() {
   return (
     <InteractiveBackground 
       className="min-h-screen light-gradient-bg"
-      particleCount={3}
-      particleOpacity={0.04}
-      particleSize={1}
-      gradientColors={['rgba(79, 142, 255, 0.015)', 'rgba(65, 241, 182, 0.005)']}
+      particleCount={4}
+      particleOpacity={0.048}
+      particleSize={1.2}
+      gradientColors={['rgba(79, 142, 255, 0.018)', 'rgba(65, 241, 182, 0.006)']}
       backgroundOnly={true}
     >
       <Header />
       
-      <FloatingParticles count={3} minSize={1} maxSize={3} backgroundOnly={true} />
+      <FloatingParticles count={4} minSize={1.2} maxSize={3.6} backgroundOnly={true} />
       <main className="relative z-10">
         {/* Hero Section */}
         <section className="relative">
@@ -263,4 +263,4 @@ export default function HomePage() {
       <Footer />
     </InteractiveBackground>
   )
-}                                                                                                                                    
+}                                                                                                                                      

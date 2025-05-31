@@ -51,12 +51,16 @@ export function PromoCards() {
           transition={{ delay: index * 0.1 }}
         >
           <Link href={promo.link}>
-            <div className="bg-white rounded-xl shadow-sm p-4 h-full hover:shadow-md transition-shadow">
-              <div className={`w-12 h-12 rounded-full ${promo.color} flex items-center justify-center mb-3`}>
-                <promo.icon className="w-6 h-6" />
+            <div className="bg-white border border-gray-200 rounded-md p-4 h-full hover:border-blue-300 transition-colors">
+              <div className="flex items-center">
+                <div className="text-blue-600 mr-3">
+                  <promo.icon className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-gray-900 text-sm">{promo.title}</h3>
+                  <p className="text-xs text-gray-600">{promo.description}</p>
+                </div>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-1">{promo.title}</h3>
-              <p className="text-sm text-gray-600">{promo.description}</p>
             </div>
           </Link>
         </motion.div>
