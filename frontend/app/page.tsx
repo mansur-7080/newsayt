@@ -42,15 +42,15 @@ export default function HomePage() {
   return (
     <InteractiveBackground 
       className="min-h-screen dark-gradient-bg"
-      particleCount={40}
-      particleOpacity={0.4}
-      particleSize={6}
-      gradientColors={['rgba(99, 102, 241, 0.1)', 'rgba(168, 85, 247, 0.08)']}
+      particleCount={25}
+      particleOpacity={0.3}
+      particleSize={4}
+      gradientColors={['rgba(79, 142, 255, 0.08)', 'rgba(65, 241, 182, 0.05)']}
     >
       <Header />
       
       <MouseTracker className="w-full">
-        <FloatingParticles count={12} minSize={2} maxSize={8} />
+        <FloatingParticles count={8} minSize={1} maxSize={5} />
         <main className="relative z-10">
         {/* Hero Section */}
         <section className="relative">
@@ -60,20 +60,35 @@ export default function HomePage() {
           <div className="absolute bottom-8 left-0 right-0 z-10">
             <div className="container mx-auto px-4">
               <div className="max-w-3xl mx-auto">
-                <div className="glass-card p-4 rounded-xl shadow-lg border border-white/5">
-                  <div className="flex flex-col md:flex-row gap-3">
+                <motion.div 
+                  className="glass-card p-3 rounded-xl shadow-lg border border-white/5 backdrop-blur-md"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  whileHover={{ 
+                    boxShadow: '0 0 20px rgba(79, 142, 255, 0.15), 0 0 5px rgba(65, 241, 182, 0.1)',
+                    borderColor: 'rgba(255, 255, 255, 0.1)'
+                  }}
+                >
+                  <div className="flex flex-col md:flex-row gap-2">
                     <div className="flex-grow">
                       <input 
                         type="text" 
                         placeholder="Search for products, brands, or categories..." 
-                        className="w-full px-4 py-3 rounded-lg bg-white/3 border border-white/5 text-white placeholder-white/50 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-transparent backdrop-blur-sm"
+                        className="w-full px-4 py-2.5 rounded-lg bg-white/5 border border-white/5 text-white placeholder-white/40 focus:outline-none focus:ring-1 focus:ring-[#4f8eff]/50 focus:border-transparent backdrop-blur-sm"
                       />
                     </div>
-                    <button className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg">
+                    <motion.button 
+                      className="bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] text-white px-6 py-2.5 rounded-lg font-medium transition-all duration-300"
+                      whileHover={{ 
+                        scale: 1.02,
+                        boxShadow: '0 0 15px rgba(79, 142, 255, 0.4)'
+                      }}
+                    >
                       Search
-                    </button>
+                    </motion.button>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>
@@ -101,8 +116,8 @@ export default function HomePage() {
               variants={fadeInUp}
               className="mb-8"
             >
-              <h2 className="text-3xl font-bold text-white mb-2 gradient-blue-indigo-text">Shop by Category</h2>
-              <p className="text-white/75 text-lg">Discover products across all departments</p>
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-2">Shop by Category</h2>
+              <p className="text-white/50 text-lg font-light">Discover products across all departments</p>
             </motion.div>
             <CategoryGrid />
           </div>
@@ -117,8 +132,8 @@ export default function HomePage() {
             variants={fadeInUp}
           >
             <div className="mb-8">
-              <h2 className="text-3xl font-bold text-white mb-2 gradient-blue-indigo-text">Featured Brands</h2>
-              <p className="text-white/75 text-lg">Shop from our curated collection of top brands</p>
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-2">Featured Brands</h2>
+              <p className="text-white/50 text-lg font-light">Shop from our curated collection of top brands</p>
             </div>
             <FeaturedBrands />
           </motion.div>
@@ -135,20 +150,32 @@ export default function HomePage() {
               className="flex items-center justify-between mb-8"
             >
               <div>
-                <h2 className="text-3xl font-bold text-white mb-2 gradient-blue-indigo-text">Today's Best Deals</h2>
-                <p className="text-white/75 text-lg">Limited time offers with exceptional savings</p>
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-2">Today's Best Deals</h2>
+                <p className="text-white/50 text-lg font-light">Limited time offers with exceptional savings</p>
               </div>
-              <button className="hidden md:flex items-center text-indigo-400 hover:text-indigo-300 font-medium border-highlight">
+              <motion.button 
+                className="hidden md:flex items-center text-white/70 hover:text-white font-medium"
+                whileHover={{ 
+                  scale: 1.02,
+                  color: 'rgba(79, 142, 255, 1)'
+                }}
+              >
                 View All Deals
                 <ArrowRight className="ml-2 w-4 h-4" />
-              </button>
+              </motion.button>
             </motion.div>
             <FlashDeals />
             <div className="mt-8 text-center md:hidden">
-              <button className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-medium border-highlight">
+              <motion.button 
+                className="inline-flex items-center text-white/70 hover:text-white font-medium"
+                whileHover={{ 
+                  scale: 1.02,
+                  color: 'rgba(79, 142, 255, 1)'
+                }}
+              >
                 View All Deals
                 <ArrowRight className="ml-2 w-4 h-4" />
-              </button>
+              </motion.button>
             </div>
           </div>
         </section>
@@ -163,8 +190,8 @@ export default function HomePage() {
               variants={fadeInUp}
               className="mb-8 text-center"
             >
-              <h2 className="text-3xl font-bold text-white mb-2 gradient-blue-indigo-text">Top Global Brands</h2>
-              <p className="text-white/90 text-lg">Shop from the world's most trusted manufacturers</p>
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-2">Top Global Brands</h2>
+              <p className="text-white/50 text-lg font-light">Shop from the world's most trusted manufacturers</p>
             </motion.div>
             <BrandShowcase />
           </div>
@@ -181,20 +208,32 @@ export default function HomePage() {
               className="flex items-center justify-between mb-8"
             >
               <div>
-                <h2 className="text-3xl font-bold text-white mb-2 gradient-blue-indigo-text">Trending Products</h2>
-                <p className="text-white/75 text-lg">Most popular products based on customer purchases</p>
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-2">Trending Products</h2>
+                <p className="text-white/50 text-lg font-light">Most popular products based on customer purchases</p>
               </div>
-              <button className="hidden md:flex items-center text-indigo-400 hover:text-indigo-300 font-medium border-highlight">
+              <motion.button 
+                className="hidden md:flex items-center text-white/70 hover:text-white font-medium"
+                whileHover={{ 
+                  scale: 1.02,
+                  color: 'rgba(79, 142, 255, 1)'
+                }}
+              >
                 View All Trending
                 <ArrowRight className="ml-2 w-4 h-4" />
-              </button>
+              </motion.button>
             </motion.div>
             <TrendingProducts />
             <div className="mt-8 text-center md:hidden">
-              <button className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-medium border-highlight">
+              <motion.button 
+                className="inline-flex items-center text-white/70 hover:text-white font-medium"
+                whileHover={{ 
+                  scale: 1.02,
+                  color: 'rgba(79, 142, 255, 1)'
+                }}
+              >
                 View All Trending
                 <ArrowRight className="ml-2 w-4 h-4" />
-              </button>
+              </motion.button>
             </div>
           </div>
         </section>
@@ -209,8 +248,8 @@ export default function HomePage() {
               variants={fadeInUp}
               className="mb-8"
             >
-              <h2 className="text-3xl font-bold text-white mb-2 gradient-blue-indigo-text">Featured Sellers</h2>
-              <p className="text-white/75 text-lg">Discover unique products from our top marketplace sellers</p>
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-2">Featured Sellers</h2>
+              <p className="text-white/50 text-lg font-light">Discover unique products from our top marketplace sellers</p>
             </motion.div>
             <FeaturedSellers />
           </div>
@@ -225,8 +264,8 @@ export default function HomePage() {
             variants={fadeInUp}
           >
             <div className="mb-8">
-              <h2 className="text-3xl font-bold text-white mb-2 gradient-blue-indigo-text">Recently Viewed</h2>
-              <p className="text-white/75 text-lg">Continue shopping where you left off</p>
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-2">Recently Viewed</h2>
+              <p className="text-white/50 text-lg font-light">Continue shopping where you left off</p>
             </div>
             <RecentlyViewed />
           </motion.div>
@@ -263,4 +302,4 @@ export default function HomePage() {
       <Footer />
     </InteractiveBackground>
   )
-}                                              
+}                                                                      
