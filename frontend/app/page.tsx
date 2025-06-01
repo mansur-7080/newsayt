@@ -10,6 +10,7 @@ import ShellShockerDeals from '@/components/home/ShellShockerDeals'
 import ComboDeals from '@/components/home/ComboDeals'
 import { FeaturedSellers } from '@/components/home/FeaturedSellers'
 import { PromoCards } from '@/components/ui/PromoCards'
+import { LeftSidebar } from '@/components/ui/LeftSidebar'
 import { ChevronRight, Cpu, Monitor, Laptop, HardDrive, Gamepad, Wifi, Printer, Wrench, Home } from 'lucide-react'
 import Link from 'next/link'
 
@@ -54,87 +55,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
             {/* Left Sidebar - Categories */}
             <div className="lg:col-span-1">
-              <div className="bg-[var(--newegg-card-bg)] border border-[var(--newegg-card-border)] rounded-sm p-4 mb-6">
-                <h3 className="text-lg font-bold text-[var(--newegg-text-primary)] mb-4 pb-2 border-b border-[var(--newegg-card-border)]">
-                  Shop By Category
-                </h3>
-                <ul className="space-y-2">
-                  {[
-                    { name: 'Components & Storage', icon: <Cpu className="w-4 h-4" /> },
-                    { name: 'Computer Systems', icon: <Laptop className="w-4 h-4" /> },
-                    { name: 'Peripherals', icon: <Monitor className="w-4 h-4" /> },
-                    { name: 'Networking', icon: <Wifi className="w-4 h-4" /> },
-                    { name: 'Electronics', icon: <HardDrive className="w-4 h-4" /> },
-                    { name: 'Gaming & VR', icon: <Gamepad className="w-4 h-4" /> },
-                    { name: 'Office Solutions', icon: <Printer className="w-4 h-4" /> },
-                    { name: 'Automotive & Tools', icon: <Wrench className="w-4 h-4" /> },
-                    { name: 'Home & Outdoors', icon: <Home className="w-4 h-4" /> }
-                  ].map((category) => (
-                    <li key={category.name}>
-                      <Link 
-                        href={`/category/${category.name.toLowerCase().replace(/\s+/g, '-')}`}
-                        className="text-sm text-[var(--newegg-text-primary)] hover:text-[var(--newegg-blue-light)] flex items-center gap-2 py-1"
-                      >
-                        {category.icon}
-                        {category.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="bg-[var(--newegg-card-bg)] border border-[var(--newegg-card-border)] rounded-sm p-4 mb-6">
-                <h3 className="text-lg font-bold text-[var(--newegg-text-primary)] mb-4 pb-2 border-b border-[var(--newegg-card-border)]">
-                  Shop By Brand
-                </h3>
-                <ul className="space-y-2">
-                  {[
-                    'ASUS',
-                    'MSI',
-                    'GIGABYTE',
-                    'Intel',
-                    'AMD',
-                    'NVIDIA',
-                    'Samsung',
-                    'Corsair',
-                    'Logitech',
-                    'Seagate'
-                  ].map((brand) => (
-                    <li key={brand}>
-                      <Link 
-                        href={`/brand/${brand.toLowerCase()}`}
-                        className="text-sm text-[var(--newegg-text-primary)] hover:text-[var(--newegg-blue-light)] block py-1"
-                      >
-                        {brand}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="bg-[var(--newegg-card-bg)] border border-[var(--newegg-card-border)] rounded-sm p-4">
-                <h3 className="text-lg font-bold text-[var(--newegg-text-primary)] mb-4 pb-2 border-b border-[var(--newegg-card-border)]">
-                  Customer Service
-                </h3>
-                <ul className="space-y-2">
-                  {[
-                    'Help Center',
-                    'Track Order',
-                    'Return Policy',
-                    'Feedback',
-                    'Contact Us'
-                  ].map((item) => (
-                    <li key={item}>
-                      <Link 
-                        href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
-                        className="text-sm text-[var(--newegg-text-primary)] hover:text-[var(--newegg-blue-light)] block py-1"
-                      >
-                        {item}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <LeftSidebar />
             </div>
 
             {/* Main Content Area */}
@@ -262,15 +183,15 @@ export default function HomePage() {
                         </Link>
                       </div>
                       <div className="mt-4 md:mt-0">
-                        <div className="w-24 h-24 bg-[var(--newegg-blue-medium)] rounded-full flex items-center justify-center">
+                    { name: 'Components &amp; Storage', icon: <Cpu className="w-4 h-4" /> },
                           <span className="text-4xl font-bold">PC</span>
                         </div>
                       </div>
                     </div>
-                  </div>
+                    { name: 'Gaming &amp; VR', icon: <Gamepad className="w-4 h-4" /> },
                 </motion.div>
-              </section>
-            </div>
+                    { name: 'Automotive &amp; Tools', icon: <Wrench className="w-4 h-4" /> },
+                    { name: 'Home &amp; Outdoors', icon: <Home className="w-4 h-4" /> }
           </div>
         </div>
       </main>
@@ -278,4 +199,4 @@ export default function HomePage() {
       <Footer />
     </>
   )
-}                                                                                                                                           
+}                                                                                                                                               
