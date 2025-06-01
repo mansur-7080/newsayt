@@ -3,79 +3,35 @@
 @tailwind utilities;
 
 :root {
-  /* Light theme (default) - Inspired by Devin.ai */
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-  --primary: 221.2 83.2% 53.3%;
-  --primary-foreground: 210 40% 98%;
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-  --accent: 210 40% 96.1%;
-  --accent-foreground: 222.2 47.4% 11.2%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 221.2 83.2% 53.3%;
-  --radius: 0.5rem;
+  /* Exact Newegg.com color scheme */
+  --newegg-blue-dark: #0c3b7c; /* Header background */
+  --newegg-blue-medium: #1a4b91; /* Secondary blue */
+  --newegg-blue-light: #0066c0; /* Links and buttons */
+  --newegg-orange: #ff5722; /* Primary accent color */
+  --newegg-yellow: #f7a01e; /* Secondary accent color */
+  --newegg-red: #e31837; /* Sale price and discounts */
   
-  /* Devin.ai inspired colors */
-  --devin-blue-light: #3b82f6;
-  --devin-blue-dark: #2563eb;
-  --devin-indigo-light: #6366f1;
-  --devin-indigo-dark: #4f46e5;
-  --devin-purple-light: #a855f7;
-  --devin-purple-dark: #9333ea;
-  --devin-gray-50: #f9fafb;
-  --devin-gray-100: #f3f4f6;
-  --devin-gray-200: #e5e7eb;
-  --devin-gray-300: #d1d5db;
-  --devin-gray-800: #1f2937;
-  --devin-gray-900: #111827;
+  /* Text colors */
+  --newegg-text-primary: #333333; /* Primary text */
+  --newegg-text-secondary: #666666; /* Secondary text */
+  --newegg-text-tertiary: #999999; /* Muted text */
   
-  /* Devin.ai enterprise light theme colors - 75% lighter */
-  --devin-dark-bg-start: #a8b0c7; /* 75% lighter than #121a2e */
-  --devin-dark-bg-end: #b7c0d4; /* 75% lighter than #0f1729 */
-  --devin-dark-card: rgba(168, 176, 199, 0.6);
-  --devin-dark-card-hover: rgba(180, 188, 210, 0.8);
-  --devin-dark-border: rgba(0, 0, 0, 0.08);
-  --devin-dark-border-hover: rgba(0, 0, 0, 0.15);
-  --devin-dark-text: rgba(0, 0, 0, 0.9);
-  --devin-dark-text-secondary: rgba(0, 0, 0, 0.75);
-  --devin-dark-text-muted: rgba(0, 0, 0, 0.5);
-  --devin-dark-glow: rgba(99, 102, 241, 0.15);
-  --devin-dark-glow-strong: rgba(99, 102, 241, 0.25);
-  --devin-accent-gradient-start: #4f8eff;
-  --devin-accent-gradient-end: #41f1b6;
-}
-
-.dark {
-  /* Dark theme inspired by Devin.ai enterprise */
-  --background: 252 100% 3%;
-  --foreground: 0 0% 100%;
-  --card: 252 100% 5%;
-  --card-foreground: 0 0% 100%;
-  --popover: 252 100% 3%;
-  --popover-foreground: 0 0% 100%;
-  --primary: 217.2 91.2% 59.8%;
-  --primary-foreground: 222.2 47.4% 11.2%;
-  --secondary: 217.2 32.6% 17.5%;
-  --secondary-foreground: 210 40% 98%;
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
-  --accent: 217.2 32.6% 17.5%;
-  --accent-foreground: 210 40% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
-  --ring: 224.3 76.3% 48%;
+  /* UI element colors */
+  --newegg-body-bg: #f2f2f2; /* Body background */
+  --newegg-card-bg: #ffffff; /* Card background */
+  --newegg-card-border: #e0e0e0; /* Card border */
+  --newegg-button-primary: #ff5722; /* Primary button */
+  --newegg-button-secondary: #0066c0; /* Secondary button */
+  --newegg-button-hover: #004b8d; /* Button hover */
+  
+  /* Special component colors */
+  --newegg-sale-badge: #e31837; /* Sale badge */
+  --shell-shocker-bg: #e31837; /* Shell Shocker background */
+  --shell-shocker-text: #ffffff; /* Shell Shocker text */
+  --discount-badge-bg: #e31837; /* Discount badge background */
+  --discount-badge-text: #ffffff; /* Discount badge text */
+  --combo-savings-bg: #0066c0; /* Combo deals background */
+  --combo-savings-text: #ffffff; /* Combo deals text */
 }
 
 /* Global Reset */
@@ -86,172 +42,28 @@
 }
 
 html, body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: var(--devin-gray-50);
-  color: var(--devin-gray-900);
-  scroll-behavior: smooth;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--newegg-body-bg);
+  color: var(--newegg-text-primary);
 }
 
-.dark html, .dark body {
-  background: linear-gradient(135deg, var(--devin-dark-bg-start), var(--devin-dark-bg-end));
-  color: var(--devin-dark-text);
-  min-height: 100vh;
-}
-
-/* Devin.ai inspired typography */
+/* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  color: var(--newegg-text-primary);
 }
 
-h1 {
-  font-size: 2.5rem;
+a {
+  color: var(--newegg-blue-light);
+  text-decoration: none;
 }
 
-h2 {
-  font-size: 2rem;
+a:hover {
+  text-decoration: underline;
 }
 
-h3 {
-  font-size: 1.5rem;
-}
-
-/* Professional UI elements */
-.glass-card {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
-.dark .glass-card {
-  background: rgba(18, 26, 46, 0.4);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(99, 102, 241, 0.15);
-  transition: all 0.3s ease;
-}
-
-.dark .glass-card:hover {
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(99, 102, 241, 0.2);
-}
-
-.gradient-text {
-  background: linear-gradient(90deg, var(--devin-blue-dark), var(--devin-blue-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.dark .gradient-text {
-  background: linear-gradient(90deg, #60a5fa, #93c5fd);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Devin.ai inspired components */
-.devin-card {
-  @apply bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all duration-300;
-}
-
-.dark .devin-card {
-  @apply bg-opacity-10 bg-black backdrop-blur-md border-opacity-10 border-white shadow-lg hover:shadow-xl;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-}
-
-/* Devin.ai enterprise dark theme components */
-.dark-card {
-  @apply rounded-lg overflow-hidden transition-all duration-300;
-  background: var(--devin-dark-card);
-  border: 1px solid var(--devin-dark-border);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-}
-
-.dark-card:hover {
-  background: var(--devin-dark-card-hover);
-  border-color: var(--devin-dark-border-hover);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 10px var(--devin-dark-glow);
-}
-
-.devin-button-primary {
-  @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300;
-}
-
-.devin-button-secondary {
-  @apply inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300;
-}
-
-.devin-input {
-  @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-all duration-300;
-}
-
-.devin-badge {
-  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium transition-colors duration-300;
-}
-
-.devin-badge-blue {
-  @apply bg-blue-100 text-blue-800;
-}
-
-.devin-badge-green {
-  @apply bg-green-100 text-green-800;
-}
-
-.devin-badge-yellow {
-  @apply bg-yellow-100 text-yellow-800;
-}
-
-.devin-badge-red {
-  @apply bg-red-100 text-red-800;
-}
-
-.devin-badge-purple {
-  @apply bg-purple-100 text-purple-800;
-}
-
-.devin-badge-gray {
-  @apply bg-gray-100 text-gray-800;
-}
-
-/* Devin.ai inspired animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideInUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes slideInLeft {
-  from { transform: translateX(-20px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes slideInRight {
-  from { transform: translateX(20px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-.animate-slide-up {
-  animation: slideInUp 0.5s ease-out forwards;
-}
-
-.animate-slide-left {
-  animation: slideInLeft 0.5s ease-out forwards;
-}
-
-.animate-slide-right {
-  animation: slideInRight 0.5s ease-out forwards;
-}
-
-/* Utility classes for better UX */
+/* Utility classes */
 .line-clamp-2 {
   overflow: hidden;
   display: -webkit-box;
@@ -266,290 +78,96 @@ h3 {
   -webkit-line-clamp: 3;
 }
 
-/* Devin.ai inspired hover effects */
-.hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-.hover-glow {
-  transition: box-shadow 0.3s ease;
-}
-
-.hover-glow:hover {
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
-}
-
-.shadow-glow {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 10px var(--devin-dark-glow);
-  transition: box-shadow 0.3s ease;
-}
-
-.shadow-glow:hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 15px var(--devin-dark-glow-strong);
-}
-
-/* Interactive hover effects with soft lines - extremely subtle */
-.interactive-element {
-  position: relative;
+/* Newegg-specific components */
+.newegg-card {
+  background-color: var(--newegg-card-bg);
+  border: 1px solid var(--newegg-card-border);
+  border-radius: 2px;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: box-shadow 0.2s ease;
 }
 
-.interactive-element::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-                              rgba(59, 130, 246, 0.03), 
-                              transparent 50px);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
+.newegg-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.interactive-element:hover::before {
-  opacity: 0.3;
+.newegg-button-primary {
+  background-color: var(--newegg-button-primary);
+  color: white;
+  border: none;
+  border-radius: 2px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.dark .interactive-element::before {
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-                             rgba(99, 102, 241, 0.04), 
-                             rgba(168, 85, 247, 0.02),
-                             transparent 100px);
+.newegg-button-primary:hover {
+  background-color: #e04b1c;
 }
 
-/* Animated border highlight effect */
-.border-highlight {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
+.newegg-button-secondary {
+  background-color: var(--newegg-button-secondary);
+  color: white;
+  border: none;
+  border-radius: 2px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.border-highlight::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(
-    135deg,
-    transparent 0%,
-    transparent 40%,
-    var(--devin-accent-gradient-start) 80%,
-    var(--devin-accent-gradient-end) 100%
-  );
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.newegg-button-secondary:hover {
+  background-color: var(--newegg-button-hover);
 }
 
-.border-highlight:hover::after {
-  opacity: 1;
+/* Sale badge */
+.sale-badge {
+  background-color: var(--newegg-sale-badge);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 2px;
 }
 
-/* Mouse position tracking for interactive elements */
-.interactive-element:hover {
-  --mouse-x: 50%;
-  --mouse-y: 50%;
+/* Shell Shocker */
+.shell-shocker-badge {
+  background-color: var(--shell-shocker-bg);
+  color: var(--shell-shocker-text);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
-/* Add this JavaScript to track mouse position:
-document.addEventListener('mousemove', function(e) {
-  document.querySelectorAll('.interactive-element').forEach(function(element) {
-    const rect = element.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / element.offsetWidth) * 100;
-    const y = ((e.clientY - rect.top) / element.offsetHeight) * 100;
-    
-    element.style.setProperty('--mouse-x', `${x}%`);
-    element.style.setProperty('--mouse-y', `${y}%`);
-  });
-});
-*/
-
-/* Soft line animations */
-@keyframes softLineAppear {
-  0% { opacity: 0; width: 0; }
-  100% { opacity: 0.5; width: 100%; }
+/* Combo deals */
+.combo-savings-badge {
+  background-color: var(--combo-savings-bg);
+  color: var(--combo-savings-text);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
-@keyframes softLineFade {
-  0% { opacity: 0.5; }
-  100% { opacity: 0; }
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
-.soft-line {
-  position: absolute;
-  height: 1px;
-  background: linear-gradient(90deg, 
-                             transparent, 
-                             rgba(59, 130, 246, 0.5), 
-                             transparent);
-  opacity: 0;
+@media (max-width: 640px) {
+  .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 }
-
-.soft-line-appear {
-  animation: softLineAppear 0.5s ease-out forwards;
-}
-
-.soft-line-fade {
-  animation: softLineFade 0.5s ease-out forwards;
-}
-
-/* Mouse tracking effect */
-.mouse-tracking-container {
-  position: relative;
-  overflow: hidden;
-}
-
-.mouse-tracking-effect {
-  position: absolute;
-  pointer-events: none;
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-                             rgba(59, 130, 246, 0.1), 
-                             transparent 150px);
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-/* Devin.ai inspired gradients */
-.gradient-blue-indigo {
-  background: linear-gradient(135deg, var(--devin-blue-light), var(--devin-indigo-light));
-}
-
-.gradient-indigo-purple {
-  background: linear-gradient(135deg, var(--devin-indigo-light), var(--devin-purple-light));
-}
-
-.gradient-blue-purple {
-  background: linear-gradient(135deg, var(--devin-blue-light), var(--devin-purple-light));
-}
-
-.gradient-blue-indigo-text {
-  background: linear-gradient(135deg, var(--devin-accent-gradient-start), var(--devin-accent-gradient-end));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 10px rgba(79, 142, 255, 0.2);
-}
-
-/* Devin.ai enterprise light theme gradients */
-.dark-gradient-bg {
-  background: linear-gradient(135deg, var(--devin-dark-bg-start), var(--devin-dark-bg-end));
-  color: var(--devin-dark-text); /* Ensure consistent text color */
-}
-
-.light-gradient-bg {
-  background: linear-gradient(135deg, #e6eeff, #f0f4ff); /* 75% lighter sky blue gradient */
-  color: var(--devin-dark-text); /* Ensure consistent text color */
-}
-
-.dark-gradient-accent {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
-}
-
-.dark-gradient-glow {
-  position: relative;
-}
-
-.dark-gradient-glow::before {
-  content: '';
-  position: absolute;
-  inset: -5px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.5), rgba(168, 85, 247, 0.5));
-  border-radius: inherit;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  filter: blur(15px);
-}
-
-.dark-gradient-glow:hover::before {
-  opacity: 0.7;
-}
-
-/* Subtle background patterns */
-/* Removed grid pattern as requested */
-.subtle-grid {
-  background-image: none;
-}
-
-.subtle-dots {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-/* Floating particles background effect */
-@keyframes float {
-  0% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(-10px) translateX(5px); }
-  100% { transform: translateY(0) translateX(0); }
-}
-
-.floating-particle {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  pointer-events: none;
-  animation: float 10s ease-in-out infinite;
-}
-
-/* GPU-accelerated animations */
-.gpu-accelerated {
-  transform: translateZ(0);
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-}
-
-/* Zoom-responsive layouts */
-@media (min-resolution: 1.25dppx) {
-  .container { padding: 1rem; }
-  .grid { gap: 0.75rem; }
-}
-
-@media (min-resolution: 1.5dppx) {
-  .container { padding: 0.75rem; }
-  .grid { gap: 0.5rem; }
-}
-
-/* Better content density at different zoom levels */
-.responsive-grid {
-  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
-}
-
-/* Consistent color scheme */
-:root {
-  --primary-blue: #4f8eff;
-  --primary-green: #41f1b6;
-  --hover-blue: rgba(79, 142, 255, 0.1);
-  --hover-green: rgba(65, 241, 182, 0.1);
-  --selection-bg: rgba(79, 142, 255, 0.15);
-  --border-highlight: rgba(79, 142, 255, 0.2);
-}
-
-/* Consistent interactive elements */
-.interactive-element {
-  transition: all 0.3s ease;
-}
-
-.interactive-element:hover {
-  background-color: var(--hover-blue);
-  border-color: var(--primary-blue);
-}
-
-.selected-element {
-  background-color: var(--selection-bg);
-  border-color: var(--primary-blue);
-} 
