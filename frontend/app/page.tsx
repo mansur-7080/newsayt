@@ -11,7 +11,7 @@ import ComboDeals from '@/components/home/ComboDeals'
 import { FeaturedSellers } from '@/components/home/FeaturedSellers'
 import { PromoCards } from '@/components/ui/PromoCards'
 import { LeftSidebar } from '@/components/ui/LeftSidebar'
-import { ChevronRight, Cpu, Monitor, Laptop, HardDrive, Gamepad, Wifi, Printer, Wrench, Home } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
 const fadeInUp = {
@@ -183,15 +183,15 @@ export default function HomePage() {
                         </Link>
                       </div>
                       <div className="mt-4 md:mt-0">
-                    { name: 'Components &amp; Storage', icon: <Cpu className="w-4 h-4" /> },
+                        <div className="w-24 h-24 bg-[var(--newegg-blue-medium)] rounded-full flex items-center justify-center">
                           <span className="text-4xl font-bold">PC</span>
                         </div>
                       </div>
                     </div>
-                    { name: 'Gaming &amp; VR', icon: <Gamepad className="w-4 h-4" /> },
+                  </div>
                 </motion.div>
-                    { name: 'Automotive &amp; Tools', icon: <Wrench className="w-4 h-4" /> },
-                    { name: 'Home &amp; Outdoors', icon: <Home className="w-4 h-4" /> }
+              </section>
+            </div>
           </div>
         </div>
       </main>
@@ -199,4 +199,4 @@ export default function HomePage() {
       <Footer />
     </>
   )
-}                                                                                                                                               
+}    
