@@ -1,13 +1,11 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import { ShoppingCart, Heart, Timer, Zap, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
 export default function ShellShockerDeals() {
-  const [hoveredId, setHoveredId] = useState<number | null>(null)
-
   const deals = [
     {
       id: 1,
@@ -89,8 +87,6 @@ export default function ShellShockerDeals() {
           <motion.div
             key={deal.id}
             whileHover={{ y: -5 }}
-            onHoverStart={() => setHoveredId(deal.id)}
-            onHoverEnd={() => setHoveredId(null)}
             className="bg-[var(--newegg-card-bg)] border border-[var(--newegg-card-border)] rounded-sm overflow-hidden hover:shadow-md transition-all"
           >
             {/* Header with Shell Shocker logo */}
