@@ -11,7 +11,6 @@ const promos = [
     title: 'Free Shipping',
     description: 'On orders over $50',
     icon: Truck,
-    color: 'bg-blue-50 text-blue-600',
     link: '/shipping-policy'
   },
   {
@@ -19,7 +18,6 @@ const promos = [
     title: 'Secure Payments',
     description: '100% protected payments',
     icon: CreditCard,
-    color: 'bg-green-50 text-green-600',
     link: '/payment-methods'
   },
   {
@@ -27,7 +25,6 @@ const promos = [
     title: '24/7 Support',
     description: 'Dedicated support team',
     icon: Clock,
-    color: 'bg-purple-50 text-purple-600',
     link: '/contact-us'
   },
   {
@@ -35,7 +32,6 @@ const promos = [
     title: 'Money-Back Guarantee',
     description: '30-day return policy',
     icon: ShieldCheck,
-    color: 'bg-orange-50 text-orange-600',
     link: '/return-policy'
   }
 ]
@@ -51,14 +47,14 @@ export function PromoCards() {
           transition={{ delay: index * 0.1 }}
         >
           <Link href={promo.link}>
-            <div className="bg-white border border-gray-200 rounded-md p-4 h-full hover:border-blue-300 transition-colors">
+            <div className="bg-[var(--newegg-card-bg)] border border-[var(--newegg-card-border)] rounded-sm p-4 h-full hover:border-[var(--newegg-blue-light)] transition-colors">
               <div className="flex items-center">
-                <div className="text-blue-600 mr-3">
+                <div className="text-[var(--newegg-blue-light)] mr-3">
                   <promo.icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-gray-900 text-sm">{promo.title}</h3>
-                  <p className="text-xs text-gray-600">{promo.description}</p>
+                  <h3 className="font-medium text-[var(--newegg-text-primary)] text-sm">{promo.title}</h3>
+                  <p className="text-xs text-[var(--newegg-text-secondary)]">{promo.description}</p>
                 </div>
               </div>
             </div>

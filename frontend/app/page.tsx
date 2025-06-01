@@ -4,25 +4,21 @@ import { motion } from 'framer-motion'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import HeroCarousel from '@/components/home/HeroCarousel'
-import CategoryGrid from '@/components/home/CategoryGrid'
 import TrendingProducts from '@/components/home/TrendingProducts'
 import FlashDeals from '@/components/home/FlashDeals'
-import BrandShowcase from '@/components/home/BrandShowcase'
+import ShellShockerDeals from '@/components/home/ShellShockerDeals'
+import ComboDeals from '@/components/home/ComboDeals'
 import { FeaturedSellers } from '@/components/home/FeaturedSellers'
-import { FeaturedBrands } from '@/components/ui/FeaturedBrands'
 import { PromoCards } from '@/components/ui/PromoCards'
-import { MobileAppBanner } from '@/components/ui/MobileAppBanner'
-import { RecentlyViewed } from '@/components/ui/RecentlyViewed'
-import { ArrowRight } from 'lucide-react'
-import InteractiveBackground from '@/components/ui/interactive/InteractiveBackground'
-import FloatingParticles from '@/components/ui/interactive/FloatingParticles'
+import { ChevronRight, Cpu, Monitor, Laptop, HardDrive, Gamepad, Wifi, Printer, Wrench, Home } from 'lucide-react'
+import Link from 'next/link'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.5 }
+    transition: { duration: 0.3 }
   }
 }
 
@@ -38,229 +34,248 @@ const staggerContainer = {
 
 export default function HomePage() {
   return (
-    <InteractiveBackground 
-      className="min-h-screen light-gradient-bg"
-      particleCount={4}
-      particleOpacity={0.048}
-      particleSize={1.2}
-      gradientColors={['rgba(79, 142, 255, 0.018)', 'rgba(65, 241, 182, 0.006)']}
-      backgroundOnly={true}
-    >
+    <>
       <Header />
       
-      <FloatingParticles count={4} minSize={1.2} maxSize={3.6} backgroundOnly={true} />
-      <main className="relative z-10">
-        {/* Hero Section */}
-        <section className="relative">
-          <HeroCarousel />
-          
-          {/* Floating search bar - Devin.ai inspired */}
-          <div className="absolute bottom-8 left-0 right-0 z-10">
-            <div className="container mx-auto px-4">
-              <div className="max-w-3xl mx-auto">
+      <main className="bg-[var(--newegg-body-bg)]">
+        {/* Hero Banner */}
+        <section className="bg-[var(--newegg-blue-dark)] text-white py-4">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row gap-8">
+              <div className="flex-1">
+                <HeroCarousel />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Main Content */}
+        <div className="container mx-auto px-4 py-6">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            {/* Left Sidebar - Categories */}
+            <div className="lg:col-span-1">
+              <div className="bg-[var(--newegg-card-bg)] border border-[var(--newegg-card-border)] rounded-sm p-4 mb-6">
+                <h3 className="text-lg font-bold text-[var(--newegg-text-primary)] mb-4 pb-2 border-b border-[var(--newegg-card-border)]">
+                  Shop By Category
+                </h3>
+                <ul className="space-y-2">
+                  {[
+                    { name: 'Components & Storage', icon: <Cpu className="w-4 h-4" /> },
+                    { name: 'Computer Systems', icon: <Laptop className="w-4 h-4" /> },
+                    { name: 'Peripherals', icon: <Monitor className="w-4 h-4" /> },
+                    { name: 'Networking', icon: <Wifi className="w-4 h-4" /> },
+                    { name: 'Electronics', icon: <HardDrive className="w-4 h-4" /> },
+                    { name: 'Gaming & VR', icon: <Gamepad className="w-4 h-4" /> },
+                    { name: 'Office Solutions', icon: <Printer className="w-4 h-4" /> },
+                    { name: 'Automotive & Tools', icon: <Wrench className="w-4 h-4" /> },
+                    { name: 'Home & Outdoors', icon: <Home className="w-4 h-4" /> }
+                  ].map((category) => (
+                    <li key={category.name}>
+                      <Link 
+                        href={`/category/${category.name.toLowerCase().replace(/\s+/g, '-')}`}
+                        className="text-sm text-[var(--newegg-text-primary)] hover:text-[var(--newegg-blue-light)] flex items-center gap-2 py-1"
+                      >
+                        {category.icon}
+                        {category.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="bg-[var(--newegg-card-bg)] border border-[var(--newegg-card-border)] rounded-sm p-4 mb-6">
+                <h3 className="text-lg font-bold text-[var(--newegg-text-primary)] mb-4 pb-2 border-b border-[var(--newegg-card-border)]">
+                  Shop By Brand
+                </h3>
+                <ul className="space-y-2">
+                  {[
+                    'ASUS',
+                    'MSI',
+                    'GIGABYTE',
+                    'Intel',
+                    'AMD',
+                    'NVIDIA',
+                    'Samsung',
+                    'Corsair',
+                    'Logitech',
+                    'Seagate'
+                  ].map((brand) => (
+                    <li key={brand}>
+                      <Link 
+                        href={`/brand/${brand.toLowerCase()}`}
+                        className="text-sm text-[var(--newegg-text-primary)] hover:text-[var(--newegg-blue-light)] block py-1"
+                      >
+                        {brand}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="bg-[var(--newegg-card-bg)] border border-[var(--newegg-card-border)] rounded-sm p-4">
+                <h3 className="text-lg font-bold text-[var(--newegg-text-primary)] mb-4 pb-2 border-b border-[var(--newegg-card-border)]">
+                  Customer Service
+                </h3>
+                <ul className="space-y-2">
+                  {[
+                    'Help Center',
+                    'Track Order',
+                    'Return Policy',
+                    'Feedback',
+                    'Contact Us'
+                  ].map((item) => (
+                    <li key={item}>
+                      <Link 
+                        href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                        className="text-sm text-[var(--newegg-text-primary)] hover:text-[var(--newegg-blue-light)] block py-1"
+                      >
+                        {item}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Main Content Area */}
+            <div className="lg:col-span-3">
+              {/* Promo Cards */}
+              <section className="mb-6">
                 <motion.div 
-                  className="glass-card p-2 rounded-lg shadow-sm border border-black/5 backdrop-blur-md interactive-element"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={staggerContainer}
                 >
-                  <div className="flex flex-col md:flex-row gap-2">
-                    <div className="flex-grow">
-                      <input 
-                        type="text" 
-                        placeholder="Search for products, brands, or categories..." 
-                        className="w-full px-4 py-2 rounded-lg bg-white/80 border border-black/5 text-black/80 placeholder-black/40 focus:outline-none focus:ring-1 focus:ring-[#4f8eff]/30 focus:border-transparent backdrop-blur-sm interactive-element"
-                      />
-                    </div>
-                    <motion.button 
-                      className="bg-[#4f8eff] text-white px-5 py-2 rounded-lg font-medium transition-all duration-300 interactive-element"
+                  <PromoCards />
+                </motion.div>
+              </section>
+
+              {/* Shell Shocker Deals */}
+              <section className="mb-6">
+                <motion.div 
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInUp}
+                >
+                  <ShellShockerDeals />
+                </motion.div>
+              </section>
+
+              {/* Combo Deals */}
+              <section className="mb-6">
+                <motion.div 
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInUp}
+                >
+                  <ComboDeals />
+                </motion.div>
+              </section>
+
+              {/* Today's Best Deals */}
+              <section className="mb-6">
+                <motion.div 
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInUp}
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-xl font-bold text-[var(--newegg-text-primary)]">Today's Best Deals</h2>
+                    <Link 
+                      href="/deals" 
+                      className="text-sm text-[var(--newegg-blue-light)] hover:text-[var(--newegg-orange)] flex items-center"
                     >
-                      Search
-                    </motion.button>
+                      View All Deals
+                      <ChevronRight className="w-4 h-4 ml-1" />
+                    </Link>
+                  </div>
+                  <FlashDeals />
+                </motion.div>
+              </section>
+
+              {/* Trending Products */}
+              <section className="mb-6">
+                <motion.div 
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInUp}
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-xl font-bold text-[var(--newegg-text-primary)]">Trending Products</h2>
+                    <Link 
+                      href="/trending" 
+                      className="text-sm text-[var(--newegg-blue-light)] hover:text-[var(--newegg-orange)] flex items-center"
+                    >
+                      View All Trending
+                      <ChevronRight className="w-4 h-4 ml-1" />
+                    </Link>
+                  </div>
+                  <TrendingProducts />
+                </motion.div>
+              </section>
+
+              {/* Featured Sellers */}
+              <section className="mb-6">
+                <motion.div 
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInUp}
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-xl font-bold text-[var(--newegg-text-primary)]">Featured Sellers</h2>
+                    <Link 
+                      href="/seller" 
+                      className="text-sm text-[var(--newegg-blue-light)] hover:text-[var(--newegg-orange)] flex items-center"
+                    >
+                      View All Sellers
+                      <ChevronRight className="w-4 h-4 ml-1" />
+                    </Link>
+                  </div>
+                  <FeaturedSellers />
+                </motion.div>
+              </section>
+
+              {/* PC Builder Banner */}
+              <section className="mb-6">
+                <motion.div 
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInUp}
+                >
+                  <div className="bg-[var(--newegg-blue-dark)] text-white p-6 rounded-sm">
+                    <div className="flex flex-col md:flex-row items-center justify-between">
+                      <div>
+                        <h3 className="text-xl font-bold mb-2">Build Your Dream PC</h3>
+                        <p className="mb-4 text-sm">Use our PC Builder to create a custom computer tailored to your needs</p>
+                        <Link 
+                          href="/pc-builder" 
+                          className="inline-block px-4 py-2 bg-[var(--newegg-orange)] text-white rounded-sm text-sm font-medium hover:bg-[#ff5722] transition-colors"
+                        >
+                          Start Building
+                        </Link>
+                      </div>
+                      <div className="mt-4 md:mt-0">
+                        <div className="w-24 h-24 bg-[var(--newegg-blue-medium)] rounded-full flex items-center justify-center">
+                          <span className="text-4xl font-bold">PC</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
-              </div>
+              </section>
             </div>
           </div>
-        </section>
-
-        {/* Trust Badges */}
-        <section className="container mx-auto px-4 py-8 border-b border-opacity-10 border-black">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-          >
-            <PromoCards />
-          </motion.div>
-        </section>
-
-        {/* Categories Section - More compact */}
-        <section className="light-gradient-bg py-8">
-          <div className="container mx-auto px-4">
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="mb-4"
-            >
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-1">Shop by Category</h2>
-              <p className="text-black/60 text-base font-light">Discover products across all departments</p>
-            </motion.div>
-            <CategoryGrid />
-          </div>
-        </section>
-
-        {/* Featured Brands - More compact */}
-        <section className="container mx-auto px-4 py-8 border-b border-opacity-10 border-black">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeInUp}
-          >
-            <div className="mb-4">
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-1">Featured Brands</h2>
-              <p className="text-black/60 text-base font-light">Shop from our curated collection of top brands</p>
-            </div>
-            <FeaturedBrands />
-          </motion.div>
-        </section>
-
-        {/* Flash Deals Section - More compact */}
-        <section className="light-gradient-bg py-8">
-          <div className="container mx-auto px-4">
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="flex items-center justify-between mb-4"
-            >
-              <div>
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-1">Today's Best Deals</h2>
-                <p className="text-black/60 text-base font-light">Limited time offers with exceptional savings</p>
-              </div>
-              <motion.button 
-                className="hidden md:flex items-center text-black/70 hover:text-black font-medium interactive-element"
-              >
-                View All Deals
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </motion.button>
-            </motion.div>
-            <FlashDeals />
-            <div className="mt-6 text-center md:hidden">
-              <motion.button 
-                className="inline-flex items-center text-black/70 hover:text-black font-medium interactive-element"
-              >
-                View All Deals
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </motion.button>
-            </div>
-          </div>
-        </section>
-
-        {/* Brand Showcase */}
-        <section className="light-gradient-bg py-8">
-          <div className="container mx-auto px-4">
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="mb-4 text-center"
-            >
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-1">Top Global Brands</h2>
-              <p className="text-black/60 text-base font-light">Shop from the world's most trusted manufacturers</p>
-            </motion.div>
-            <BrandShowcase />
-          </div>
-        </section>
-
-        {/* Trending Products Section - More compact */}
-        <section className="light-gradient-bg py-8">
-          <div className="container mx-auto px-4">
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="flex items-center justify-between mb-4"
-            >
-              <div>
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-1">Trending Products</h2>
-                <p className="text-black/60 text-base font-light">Most popular products based on customer purchases</p>
-              </div>
-              <motion.button 
-                className="hidden md:flex items-center text-black/70 hover:text-black font-medium interactive-element"
-              >
-                View All Trending
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </motion.button>
-            </motion.div>
-            <TrendingProducts />
-            <div className="mt-6 text-center md:hidden">
-              <motion.button 
-                className="inline-flex items-center text-black/70 hover:text-black font-medium interactive-element"
-              >
-                View All Trending
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </motion.button>
-            </div>
-          </div>
-        </section>
-        
-        {/* Featured Sellers Section - More compact */}
-        <section className="py-8 light-gradient-bg">
-          <div className="container mx-auto px-4">
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="mb-4"
-            >
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-1">Featured Sellers</h2>
-              <p className="text-black/60 text-base font-light">Discover unique products from our top marketplace sellers</p>
-            </motion.div>
-            <FeaturedSellers />
-          </div>
-        </section>
-
-        {/* Recently Viewed - More compact */}
-        <section className="container mx-auto px-4 py-8 border-t border-opacity-10 border-black">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeInUp}
-          >
-            <div className="mb-4">
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-[#4f8eff] to-[#41f1b6] bg-clip-text text-transparent mb-1">Recently Viewed</h2>
-              <p className="text-black/60 text-base font-light">Continue shopping where you left off</p>
-            </div>
-            <RecentlyViewed />
-          </motion.div>
-        </section>
-
-        {/* Newsletter section removed as requested */}
-
-        {/* Mobile App Banner - More compact */}
-        <section className="container mx-auto px-4 py-8 border-t border-opacity-10 border-black">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeInUp}
-          >
-            <MobileAppBanner />
-          </motion.div>
-        </section>
+        </div>
       </main>
 
       <Footer />
-    </InteractiveBackground>
+    </>
   )
-}                                                                                                                                      
+}                                                                                                                                           
